@@ -6,7 +6,7 @@
 //Moet ek soos die pointers gebruik? Of arrays? of vectors?
 //Indien arrays... new array of net skoon?
 //Benchmark die verskillende implementyerings
-
+#include "SecureSignIn.hpp"
 
 SecureSignIn::SecureSignIn()
 {
