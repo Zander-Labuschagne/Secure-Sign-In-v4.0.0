@@ -1,5 +1,7 @@
 //
 
+#include <iostream>
+
 class SecureSignIn
 {
 private:

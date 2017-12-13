@@ -13,7 +13,7 @@ SecureSignIn::SecureSignIn()
 
 }
 
-char* encrypt(const char* user_password, const char* key, const unsigned short limit)
+char* SecureSignIn::encrypt(const char* user_password, const char* key, const unsigned short limit)
 {
 	char* system_password;
 	unsigned short key_index = 0;
