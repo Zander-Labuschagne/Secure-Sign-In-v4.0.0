@@ -1,4 +1,4 @@
-//Document:
+//Document:g
 
 #include "SecureSignIn.hpp"
 
@@ -7,14 +7,18 @@ int main()
 	SecureSignIn ssi;
 
 	std::cout << "Password: ";
-	std::string password;//verander na char
-	std::cin >> password;
-	std::cout << std::endl << "Key: ";
-	std::string key;
-	std::cin >> key;
-	std::cout << std::endl;
+	char password[256];
+	std::cin.getline(password, 256);
+	std::cout << "Key: ";
+	char key[256];
+	std::cin.getline(key, 256);
 
-	std::cout << *(ssi.encrypt(&(password[0]), &(key[0]), 32)) << std::endl;
+	char* cipher_password = ssi.encrypt(&(password[0]), &(key[0]), 32);
+
+	unsigned short i = 0;
+	while(*(cipher_password + i) != '\0')
+		std::cout << *(cipher_password + i++);
+	std::cout << std::endl;
 
 	return 0;
 }
