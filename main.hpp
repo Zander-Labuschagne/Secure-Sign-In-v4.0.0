@@ -1,11 +1,11 @@
 #include "SecureSignIn.hpp"
 #include <sstream>
 #include <string>
-#ifdef _WIN32
-	#include <windows.h>
-#else
+#ifdef _POSIX2_VERSION
 	#include <termios.h>
 	#include <unistd.h>
+#elif _WIN32
+	#include <windows.h>
 #endif
 
 void display_password(const char* password);
@@ -16,7 +16,7 @@ std::string copy_password_windows(const char* password);
 std::string exec(const char* tty);
 //tty tools, maybe build a library?
 void set_echo(bool enabled);
-void set_echo_unix(bool enabled);
+void set_echo_posix(bool enabled);
 void set_echo_windows(bool enabled);
 void set_buffer(bool enabled);
 void set_buffer_unix(bool enabled);
@@ -150,15 +150,15 @@ std::string exec(const char* tty)
 
 void set_echo(bool enabled = true)
 {
-	#ifdef __unix__
-		set_echo_unix(enabled);
-	#else
+	#ifdef _POSIX2_VERSION
+		set_echo_posix(enabled);
+	#elif _WIN32
 		set_echo_windows(enabled);
 	#endif
 }
 
-#ifdef __unix__ //Inlcudes Apple(macOS, iOS), Linux, UNIX
-void set_echo_unix(bool enabled = true)
+#ifdef _POSIX2_VERSION//Inlcudes Apple(macOS, iOS), UNIX
+void set_echo_posix(bool enabled = true)
 {
 	struct termios tty;
 	tcgetattr(STDIN_FILENO, &tty);
@@ -188,15 +188,15 @@ void set_echo_windows(bool enabled = true)
 
 void set_buffer(bool enabled)
 {
-	#ifdef __unix__
+	#ifdef _POSIX2_VERSION
 		set_buffer_unix(enabled);
 	#elif _WIN32
 		set_buffer_windows(enabled);
 	#endif
 }
 
-#ifdef __unix__ //Inlcudes Apple(macOS, iOS), Linux, UNIX
-void set_buffer_unix(bool enabled)
+#ifdef _POSIX2_VERSION //Inlcudes Apple(macOS, iOS), Linux, UNIX
+void set_buffer_posix(bool enabled)
 {
 	struct termios tty;
 	tcgetattr(STDIN_FILENO, &tty); //get the current terminal I/O structure
