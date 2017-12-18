@@ -1,7 +1,7 @@
 #include "SecureSignIn.hpp"
 #include <sstream>
 #include <string>
-#ifdef _POSIX2_VERSION
+#ifdef _POSIX_VERSION
 	#include <termios.h>
 	#include <unistd.h>
 #elif _WIN32
@@ -150,14 +150,14 @@ std::string exec(const char* tty)
 
 void set_echo(bool enabled = true)
 {
-	#ifdef _POSIX2_VERSION
+	#ifdef _POSIX_VERSION
 		set_echo_posix(enabled);
 	#elif _WIN32
 		set_echo_windows(enabled);
 	#endif
 }
 
-#ifdef _POSIX2_VERSION//Inlcudes Apple(macOS, iOS), UNIX
+#ifdef _POSIX_VERSION//Inlcudes Apple(macOS, iOS), UNIX
 void set_echo_posix(bool enabled = true)
 {
 	struct termios tty;
