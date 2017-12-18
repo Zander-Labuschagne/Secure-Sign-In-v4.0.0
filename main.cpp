@@ -29,7 +29,8 @@ int main()
 	std::cout << "Enter \'q\' to exit the application." << std::endl;
 	char option;
 	std::cin >> option;
-	
+	std::cout << std::endl;
+
 	SecureSignIn ssi;
 	char* cipher_password;
 	
@@ -52,6 +53,7 @@ int main()
 	std::cout << "Enter \'v\' to view/display the password on screen and exit the application." << std::endl;
 	std::cout << "Enter \'q\' to exit the application." << std::endl;
 	std::cin >> option;
+	std::cout << std::endl;
 	
 	switch(option)
 	{

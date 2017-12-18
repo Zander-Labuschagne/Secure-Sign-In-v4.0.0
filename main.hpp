@@ -1,7 +1,6 @@
 #include "SecureSignIn.hpp"
 #include <sstream>
-#include <string>
-#if defined(__MACH__) || defined(__linux__)
+#if defined (__MACH__) || defined(__linux__)
 	#include <termios.h>
 	#include <unistd.h>
 #elif _WIN32
