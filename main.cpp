@@ -1,24 +1,59 @@
-//Document:g
+//Document:
 
-#include "SecureSignIn.hpp"
+#include "main.hpp"
 
 int main()
 {
-	SecureSignIn ssi;
-
 	std::cout << "Password: ";
 	char password[256];
 	std::cin.getline(password, 256);
 	std::cout << "Key: ";
 	char key[256];
 	std::cin.getline(key, 256);
-
-	char* cipher_password = ssi.encrypt(&(password[0]), &(key[0]), 32);
-
-	unsigned short i = 0;
-	while(*(cipher_password + i) != '\0')
-		std::cout << *(cipher_password + i++);
-	std::cout << std::endl;
-
+	
+	std::cout << "Enter \'s\' to use the short version of the password." << std::endl;
+	std::cout << "Enter \'l\' to use the long version of the password. (Default)" << std::endl;
+	std::cout << "Enter \'q\' to exit the application." << std::endl;
+	char option;
+	std::cin >> option;
+	
+	SecureSignIn ssi;
+	char* cipher_password;
+	
+	switch(option)
+	{
+		case('s'):
+			cipher_password =  ssi.encrypt(&(password[0]), &(key[0]), 12);
+			break;
+		case('l'):
+			cipher_password =  ssi.encrypt(&(password[0]), &(key[0]), 32);
+			break;
+		case('q'):
+			return 0;
+		default:
+			std::cout << "Terminating application due to user disobedience." << std::endl;
+			return 0;
+	}
+	
+	std::cout << "Enter \'c\' to copy the password and exit the application." << std::endl;
+	std::cout << "Enter \'v\' to view/display the password on screen and exit the application." << std::endl;
+	std::cout << "Enter \'q\' to exit the application." << std::endl;
+	std::cin >> option;
+	
+	switch(option)
+	{
+		case('c'):
+			copy_password(cipher_password);
+			return 0;
+		case('v'):
+			display_password(cipher_password);
+			return 0;
+		case('q'):
+			return 0;
+		default:
+			std::cout << "Terminating application due to user disobedience." << std::endl;
+			return 0;
+	}
+	
 	return 0;
 }
