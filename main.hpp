@@ -1,11 +1,6 @@
 #include "SecureSignIn.hpp"
+#include "TTY.hpp"
 #include <sstream>
-#if defined (__MACH__) || defined(__linux__)
-	#include <termios.h>
-	#include <unistd.h>
-#elif _WIN32
-	#include <windows.h>
-#endif
 
 void display_password(const char* password);
 std::string copy_password(const char* password);
@@ -13,13 +8,6 @@ std::string copy_password_linux(const char* password);
 std::string copy_password_macos(const char* password);
 std::string copy_password_windows(const char* password);
 std::string exec(const char* tty);
-//tty tools, maybe build a library?
-void set_echo(bool enabled);
-void set_echo_posix(bool enabled);
-void set_echo_windows(bool enabled);
-void set_buffer(bool enabled);
-void set_buffer_posix(bool enabled);
-void set_buffer_windows(bool enabled);
 
 void display_password(const char* password)
 {
@@ -146,71 +134,3 @@ std::string exec(const char* tty)
 	pclose(pipe);
 	return result;
 }
-
-void set_echo(bool enabled = true)
-{
-	#if defined(__MACH__) || defined(__linux__)
-		set_echo_posix(enabled);
-	#elif _WIN32
-		set_echo_windows(enabled);
-	#endif
-}
-
-#if defined(__MACH__) || defined(__linux__) //Inlcudes Apple(macOS, iOS), UNIX
-void set_echo_posix(bool enabled = true)
-{
-	struct termios tty;
-	tcgetattr(STDIN_FILENO, &tty);
-	
-	if(!enabled)
-		tty.c_lflag &= ~ECHO;
-	else
-		tty.c_lflag |= ECHO;
-
-	tcsetattr(STDIN_FILENO, TCSANOW, &tty);
-}
-#elif _WIN32
-void set_echo_windows(bool enabled = true)
-{
-	HANDLE std_handle = GetStdHandle(STD_INPUT_HANDLE); 
-	DWORD mode;
-	GetConsoleMode(std_handle, &mode);
-
-	if(!enabled)
-		mode &= ~ENABLE_ECHO_INPUT;
-	else
-		mode |= ENABLE_ECHO_INPUT;
-
-	SetConsoleMode(std_handle, mode);
-}
-#endif
-
-void set_buffer(bool enabled)
-{
-	#if defined(__MACH__) || defined(__linux__)
-		set_buffer_posix(enabled);
-	#elif _WIN32
-		set_buffer_windows(enabled);
-	#endif
-}
-
-#if defined(__MACH__) || defined(__linux__)  //Inlcudes Apple(macOS, iOS), Linux, UNIX
-void set_buffer_posix(bool enabled)
-{
-	struct termios tty;
-	tcgetattr(STDIN_FILENO, &tty); //get the current terminal I/O structure
-	
-	if(!enabled)
-		tty.c_lflag &= ~ICANON; //Manipulate the flag bits to do what you want it to do
-	else
-		tty.c_lflag |= ICANON; //Manipulate the flag bits to do what you want it to do
-			
-	tcsetattr(STDIN_FILENO, TCSANOW, &tty); //Apply the new settings
-}
-#elif _WIN32
-void set_buffer_windows(bool enabled)
-{
-	set_buffer_posix(enabled); //TODO: Review this
-}
-#endif
-

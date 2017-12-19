@@ -4,6 +4,7 @@
 
 int main()
 {
+	TTY tty;
 	//Hide input - Also see getch() for C
 //	termios oldt;
 //	tcgetattr(STDIN_FILENO, &oldt);
@@ -11,7 +12,7 @@ int main()
 //	newt.c_lflag &= ~ECHO;
 //	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 	
-	set_echo(false);
+	tty.set_echo(false);
 	
 	std::cout << "Password: ";
 	char password[256];
@@ -21,8 +22,8 @@ int main()
 	std::cin.getline(key, 256);
 	std::cout << std::endl;
 	
-	set_echo(true);
-	set_buffer(false);
+	tty.set_echo(true);
+	tty.set_buffer(false);
 	
 	std::cout << "Enter \'s\' to use the short version of the password." << std::endl;
 	std::cout << "Enter \'l\' to use the long version of the password. (Default)" << std::endl;
