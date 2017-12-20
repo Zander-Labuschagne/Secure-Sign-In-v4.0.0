@@ -5,7 +5,7 @@ void X11_clipboard::copy(const Atom selection, const unsigned char* text, const 
 	XEvent event;
 	Window owner;
 	XSetSelectionOwner(display, selection, window, 0);
-	if(XGetSelctionOwner(display, &event) != window)
+	if(XGetSelectionOwner(display, &event) != window)
 		return;
 	
 	while(1)
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 	X11_clipboard clipboard;
 	clipboard.display = XOpenDisplay(0);
 	int N = DefaultScreen(clipboard.display);
-	clipboard.window = XCreatSimpleWindow(clipboard.display, RootWindow(clipboard.display, N), 0, 0, 1, 1, 0, BlackPixel(clipboard.display, N), WhitePixel(clipboard.display, N));
+	clipboard.window = XCreateSimpleWindow(clipboard.display, RootWindow(clipboard.display, N), 0, 0, 1, 1, 0, BlackPixel(clipboard.display, N), WhitePixel(clipboard.display, N));
 	clipboard.targets_atom = XInternAtom(clipboard.display,"TARGETS", 0);
 	clipboard.text_atom = XInternAtom(clipboard.display, "TEXT", 0);
 	clipboard.utf8 = XInternAtom(clipboard.display, "UTF8_STRING", 1);
