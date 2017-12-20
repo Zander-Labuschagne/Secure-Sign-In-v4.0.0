@@ -51,5 +51,6 @@ int main(int argc, char* argv[])
 	if(utf8 == None)
 		utf8 = XA_STRING;
 	Atom selection = XInternAtom(display, "CLIPBOARD", 0);
-	copy(selection, (unsigned char*)argv[1], strlen(argv[1]));
+	X11_clipboard clipboard;
+	clipboard.copy(selection, (unsigned char*)argv[1], strlen(argv[1]));
 }
