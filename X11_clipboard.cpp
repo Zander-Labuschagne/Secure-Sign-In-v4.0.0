@@ -42,15 +42,15 @@ X11_clipboard::void copy(const Atom selection, const unsigned char* text, const 
 
 int main(int argc, char* argv[])
 {
-	display = XOpenDisplay(0);
-	int N = DefaultScreen(display);
-	window = XCreatSimpleWindow(display, RootWindow(display, N), 0, 0, 1, 1, 0, BlackPixel(display, N), WhitePixel(display, N));
-	targets_atom = XInternAtom(display,"TARGETS", 0);
-	text_atom = XInternAtom(display, "TEXT", 0);
-	utf8 = XInternAtom(display, "UTF8_STRING", 1);
-	if(utf8 == None)
-		utf8 = XA_STRING;
-	Atom selection = XInternAtom(display, "CLIPBOARD", 0);
 	X11_clipboard clipboard;
+	clipboard.display = XOpenDisplay(0);
+	int N = DefaultScreen(clipboard.display);
+	clipboard.window = XCreatSimpleWindow(clipboard.display, RootWindow(clipboard.display, N), 0, 0, 1, 1, 0, BlackPixel(clipboard.display, N), WhitePixel(clipboard.display, N));
+	clipboard.targets_atom = XInternAtom(clipboard.display,"TARGETS", 0);
+	clipboard.text_atom = XInternAtom(clipboard.display, "TEXT", 0);
+	clipboard.utf8 = XInternAtom(clipboard.display, "UTF8_STRING", 1);
+	if(clipboard.utf8 == None)
+		clipboard.utf8 = clipboard.XA_STRING;
+	Atom selection = XInternAtom(clipboard.display, "CLIPBOARD", 0);
 	clipboard.copy(selection, (unsigned char*)argv[1], strlen(argv[1]));
 }
