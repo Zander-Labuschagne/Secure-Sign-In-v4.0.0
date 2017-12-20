@@ -6,7 +6,7 @@
 class X11_clipboard
 {
 	private:
-		const Display* DISPLAY = XOpenDisplay(0);
+		Display* DISPLAY = XOpenDisplay(0);
 		const int N = DefaultScreen(DISPLAY);
 		const Window WINDOW = XCreateSimpleWindow(DISPLAY, RootWindow(DISPLAY, N), 0, 0, 1, 1, 0, BlackPixel(DISPLAY, N), WhitePixel(DISPLAY, N));
 		const Atom TARGETS_ATOM = XInternAtom(DISPLAY,"TARGETS", 0);
