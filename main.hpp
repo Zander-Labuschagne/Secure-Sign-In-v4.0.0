@@ -38,7 +38,7 @@ std::string copy_password_macos(const char* password)
 	for(xvix = 0; *(password + xvix) != '\0'; xvix++);
 		
 	std::stringstream tty;
-	tty << "echo \"" << password << "\" | pbcopy";
+	tty << "echo \"" << password << "\" | pbcopy"; //Ek dink pbcopy is unix shll program om te copy. En ek dink die tty stringstream stuur na die terminal.
 	
 	return exec(tty.str().c_str());
 }

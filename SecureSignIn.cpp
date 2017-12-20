@@ -1,5 +1,5 @@
 //Exception handling?
-//is dir nodig om te cast?
+//is dit nodig om te cast?
 //Moet ek soos die pointers gebruik? Of arrays? of vectors?
 //Indien arrays... new array of net skoon?
 //Benchmark die verskillende implementyerings
