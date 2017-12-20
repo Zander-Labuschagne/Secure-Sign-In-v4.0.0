@@ -1,7 +1,7 @@
 #ifdef __linux__
 	#include "X11_clipboard.hpp"
 
-	void X11_clipboard::copy(const unsigned char* TEXT) // 
+	void X11_clipboard::copy(const char* TEXT) // 
 	{
 		const int SIZE = strlen(TEXT);
 		if(utf8 == None)
@@ -34,9 +34,9 @@
 					if(xse.target == TARGETS_ATOM)
 						r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_ATOM, 32, PropModeReplace, (unsigned char*)&utf8, 1);
 					else if(xse.target == XA_STRING || xse.target == TEXT_ATOM)
-						r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_STRING, 8, PropModeReplace, TEXT, SIZE);
+						r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_STRING, 8, PropModeReplace, (unsigned char*)TEXT, SIZE);
 					else if(xse.target == utf8)
-						r = XChangeProperty(xse.display, xse.requestor, xse.property, utf8, 8, PropModeReplace, TEXT, SIZE);
+						r = XChangeProperty(xse.display, xse.requestor, xse.property, utf8, 8, PropModeReplace, (unsigned char*)TEXT, SIZE);
 					else
 						xse.property = None;
 					if((r & 2) == 0)
