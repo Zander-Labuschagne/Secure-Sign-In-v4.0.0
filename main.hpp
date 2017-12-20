@@ -1,12 +1,13 @@
 #include "SecureSignIn.hpp"
 #include "TTY.hpp"
+#include "X11_clipboard.hpp"
 #include <sstream>
 
 void display_password(const char* password);
-std::string copy_password(const char* password);
-std::string copy_password_linux(const char* password);
-std::string copy_password_macos(const char* password);
-std::string copy_password_windows(const char* password);
+void copy_password(const char* password);
+void copy_password_linux(const char* password);
+void copy_password_macos(const char* password);
+void copy_password_windows(const char* password);
 std::string exec(const char* tty);
 
 void display_password(const char* password)
@@ -16,23 +17,26 @@ void display_password(const char* password)
 	std::cout << std::endl;
 }
 
-std::string copy_password(const char* password)
+void copy_password(const char* password)
 {
 	#ifdef _WIN32 //both windows 32-bit and 64-bit; _WIN64 is only 64-bit
-		return copy_password_windows(password);
+		copy_password_windows(password);
 	#elif __APPLE__ //All Apple devices; TARGET_OS_IPHONE for iOS device; TARGET_OS_MAC for macOS
-		return copy_password_macos(password);
+		copy_password_macos(password);
 	#elif __linux__  //__unix__ // all unices not linux or macOS; defined(_POSIX_VERSION) for POSIX system
-		return copy_password_linux(password);
+		copy_password_linux(password);
 	#endif
 }
 
-std::string copy_password_linux(const char* password)
-{
-	return copy_password_macos(password); //TODO: Review this
-}
+#ifdef __linux__
+	void copy_password_linux(const char* password)
+	{
+		X11_clipboard clipboard;
+		clipboard.copy((unsigned char*)argv[1], strlen(argv[1]));
+	}
+#endif
 
-std::string copy_password_macos(const char* password)
+void copy_password_macos(const char* password)
 {
 	unsigned short xvix;
 	for(xvix = 0; *(password + xvix) != '\0'; xvix++);
@@ -40,12 +44,12 @@ std::string copy_password_macos(const char* password)
 	std::stringstream tty;
 	tty << "echo \"" << password << "\" | pbcopy"; //Ek dink pbcopy is unix shll program om te copy. En ek dink die tty stringstream stuur na die terminal.
 	
-	return exec(tty.str().c_str());
+	exec(tty.str().c_str()); //ek dink die metode stuur commands na die terminal toe
 }
 
-std::string copy_password_windows(const char* password)
+void copy_password_windows(const char* password)
 {
-	return copy_password_macos(password); //TODO: Review this
+	copy_password_macos(password); //TODO: Review this
 
 	//#include "stdafx.h"
 	//#include "windows.h"
