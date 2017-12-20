@@ -32,7 +32,7 @@ void copy_password(const char* password)
 	void copy_password_linux(const char* password)
 	{
 		X11_clipboard clipboard;
-		clipboard.copy(password);
+		clipboard.copy((unsigned char*)password);
 	}
 #endif
 

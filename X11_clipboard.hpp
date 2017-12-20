@@ -18,7 +18,7 @@
 			char* paste_type(Atom atom);
 			
 		public:
-			void copy(const char* TEXT);
+			void copy(const unsigned char* TEXT);
 			char* paste();
 	};
 #endif
