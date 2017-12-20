@@ -1,7 +1,7 @@
 #ifdef __linux__
 	#include "X11_clipboard.hpp"
 
-	void X11_clipboard::copy(const unsigned char* TEXT) // 
+	void X11_clipboard::copy(const /*unsigned*/ char* TEXT) // 
 	{
 		const int SIZE = strlen(TEXT);
 		if(utf8 == None)
