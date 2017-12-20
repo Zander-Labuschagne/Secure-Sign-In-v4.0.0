@@ -17,7 +17,7 @@ void X11_clipboard::copy(const unsigned char* TEXT, const int SIZE) //
 		switch(event.type)
 		{
 			case SelectionRequest:
-				if(event.xselectionrequest.selection != SELCTION)
+				if(event.xselectionrequest.selection != SELECTION)
 					break;
 				XSelectionRequestEvent* xsre = &event.xselectionrequest;
 				XSelectionEvent xse = {0};
@@ -29,9 +29,9 @@ void X11_clipboard::copy(const unsigned char* TEXT, const int SIZE) //
 				xse.time = xsre->time;
 				xse.target = xsre->target;
 				xse.property = xsre->property;
-				if(xse.target == targets_atom)
+				if(xse.target == TARGETS_ATOM)
 					r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_ATOM, 32, PropModeReplace, (unsigned char*)&utf8, 1);
-				else if(xse.target == XA_STRING || xse.target == text_atom)
+				else if(xse.target == XA_STRING || xse.target == TEXT_ATOM)
 					r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_STRING, 8, PropModeReplace, TEXT, SIZE);
 				else if(xse.target == utf8)
 					r = XChangeProperty(xse.display, xse.requestor, xse.property, utf8, 8, PropModeReplace, TEXT, SIZE);
@@ -47,4 +47,6 @@ int main(int argc, char* argv[])
 {
 	X11_clipboard clipboard;
 	clipboard.copy((unsigned char*)argv[1], strlen(argv[1]));
+	
+	return 0;
 }
