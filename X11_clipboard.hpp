@@ -3,7 +3,7 @@
 
 class X11_clipboard
 {
-	private:
+	public:
 		Display* display;
 		Window window;
 		Atom targets_atom;
@@ -13,7 +13,7 @@ class X11_clipboard
 		const Atom XA_STRING = 31;
 		char* paste_type(Atom atom);
 		
-	public:
+	//public:
 		void copy(const Atom selection, const unsigned char* text, const int size);
 		char* paste();
 };
