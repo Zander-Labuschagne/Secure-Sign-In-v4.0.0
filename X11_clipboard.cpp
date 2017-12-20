@@ -5,7 +5,7 @@ void X11_clipboard::copy(const Atom selection, const unsigned char* text, const 
 	XEvent event;
 	Window owner;
 	XSetSelectionOwner(display, selection, window, 0);
-	if(XGetSelectionOwner(display, &event) != window)
+	if(XGetSelectionOwner(display, selection) != window)
 		return;
 	
 	while(1)
