@@ -1,8 +1,8 @@
 #include "X11_clipboard.hpp"
 
-X11_clipboard::void copy(const Atom selection, const unsigned char* text, const int size) // 
+void X11_clipboard::copy(const Atom selection, const unsigned char* text, const int size) // 
 {
-	xEvent event;
+	XEvent event;
 	Window owner;
 	XSetSelectionOwner(display, selection, window, 0);
 	if(XGetSelctionOwner(display, &event) != window)
