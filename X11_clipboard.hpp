@@ -18,6 +18,6 @@ class X11_clipboard
 		char* paste_type(Atom atom);
 		
 	public:
-		void copy(const Atom selection, const unsigned char* text, const int size);
+		void copy(const unsigned char* TEXT, const int SIZE);
 		char* paste();
 };
