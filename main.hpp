@@ -136,5 +136,6 @@ std::string exec(const char* tty)
 		if(fgets(buffer, 128, pipe) != NULL)
 			result += buffer;
 	pclose(pipe);
+	
 	return result;
 }
