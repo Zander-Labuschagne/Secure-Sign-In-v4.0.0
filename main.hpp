@@ -127,6 +127,7 @@ void copy_password(const char* password)
 
 
 	}
+#endif
 
 std::string exec(const char* tty)
 {
