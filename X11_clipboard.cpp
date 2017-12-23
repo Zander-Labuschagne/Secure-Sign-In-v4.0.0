@@ -13,7 +13,9 @@
 		if(XGetSelectionOwner(DISPLAY, SELECTION) != WINDOW)
 			return;
 		
-		//while(1)
+		//while(1)//Verander na timeout na 8sec
+		time_t end = time(NULL) + 8;
+		while(time(NULL) <= end)
 		{
 			XNextEvent(DISPLAY, &event);
 			switch(event.type)
