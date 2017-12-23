@@ -30,7 +30,7 @@
 				xse.time = xsre->time;
 				xse.target = xsre->target;
 				xse.property = xsre->property;
-				if (xse.target == ATOM_TARGETS)
+				if (xse.target == atom_targets)
 					r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_ATOM, 32, PropModeReplace, (unsigned char*)&UTF8, 1);
 				else if (xse.target == XA_STRING || xse.target == ATOM_TEXT)
 					r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_STRING, 8, PropModeReplace, (unsigned char*)text, size);
@@ -66,8 +66,8 @@
 				int format;
 				unsigned long n;
 				unsigned long size;
-				XGetWindowProperty(event.xselection.display, event.xselection.requestor, event.xselection.property, 0L, (~0L), 0, AnyPropertyType, &ATOM_TARGETS, &format, &size, &n, (unsigned char**)&data);
-				if (ATOM_TARGETS == UTF8 || ATOM_TARGETS == XA_STRING) {
+				XGetWindowProperty(event.xselection.display, event.xselection.requestor, event.xselection.property, 0L, (~0L), 0, AnyPropertyType, &atom_targets, &format, &size, &n, (unsigned char**)&data);
+				if (atom_targets == UTF8 || atom_targets == XA_STRING) {
 					clipboard = strndup(data, size);
 					XFree(data);
 				}
