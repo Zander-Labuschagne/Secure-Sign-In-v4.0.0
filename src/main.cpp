@@ -1,4 +1,5 @@
 //Document:
+//export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.
 
 #include "main.hpp"
 

@@ -1,5 +1,5 @@
 #ifdef __linux__
-	#include "X11_clipboard.h"
+	#include "X11_clipboard.hpp"
 
 	void X11_clipboard::copy(const char *text, long seconds_active)
 	{
