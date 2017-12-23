@@ -28,7 +28,7 @@ char* SecureSignIn::encrypt(const char* user_password, const char* key, const un
 	{
 		if(t >= 65 && t <= 90) //Encrypting uppercase characters
 		{
-			unsigned short temp = t - 65 + (*(key + key_index) - 65);
+			short temp = t - 65 + (*(key + key_index) - 65);
 			if(temp < 0)
 				temp += 26;
 			if(temp <= 0)
@@ -41,7 +41,7 @@ char* SecureSignIn::encrypt(const char* user_password, const char* key, const un
 		}
 		else if(t >= 97 && t <= 122) //Encrypting lowercase characters
 		{
-			unsigned short temp = t - 97 + (*(key + key_index) - 97);
+			short temp = t - 97 + (*(key + key_index) - 97);
 			if(temp < 0)
 				temp += 26;
 			if(temp < 0)
@@ -68,7 +68,7 @@ char* SecureSignIn::encrypt(const char* user_password, const char* key, const un
 	for(char t = *spec_chars; t != '\0'; i++, t = *(spec_chars + i - 1)) //Encrypting special characters and positions of special characters
 		*(final_password + i) = t;
 	ii = i;
-	for(char t = *system_password; t != '\0'; i++, t = *(system_password + i - ii))
+	for(char t = *system_password; t != '\0'; i++, t = *(system_password + i - ii)) //Adding the encrypted password to the encrypted special characters and positions
 		*(final_password + i) = t;
 
 	free(system_password);

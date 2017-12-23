@@ -40,21 +40,25 @@ void copy_password(const char* password)
 #elif __MACH__
 	void copy_password_macos(const char* password)
 	{
-		unsigned short xvix;
-		for(xvix = 0; *(password + xvix) != '\0'; xvix++);
-			
+		char* trimmed_password;
+		trimmed_password = (char*)malloc(256);
+		for(unsigned short xix = 0; *(password + xix) != '\0'; xix++)
+			*(trimmed_password + xix) = *(password + xix); 
+		
+		
 		std::stringstream tty;
-		tty << "echo \"" << password << "\" | pbcopy"; //Ek dink pbcopy is unix shll program om te copy. En ek dink die tty stringstream stuur na die terminal.
+		tty << "echo \"" << trimmed_password << "\" | pbcopy"; //Ek dink pbcopy is unix shll program om te copy. En ek dink die tty stringstream stuur na die terminal.
 		
 		exec(tty.str().c_str()); //ek dink die metode stuur commands na die terminal toe
 		
-		time_t end = time(NULL) + 8;
-		while(time(NULL) <= end);
+		time_t end = time(NULL) + 8; //set end time to current time + 8 seconds
+		while(time(NULL) <= end); //Wait for as long as current time is less than end time
+		free(trimmed_password);
 		std::stringstream tty_clear;
 		tty_clear << "echo \"" << " " << "\" | pbcopy";
 		exec(tty_clear.str().c_str());
 	}
-	
+
 #elif _WIN32
 	void copy_password_windows(const char* password)
 	{
