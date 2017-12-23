@@ -47,8 +47,14 @@ void copy_password(const char* password)
 		tty << "echo \"" << password << "\" | pbcopy"; //Ek dink pbcopy is unix shll program om te copy. En ek dink die tty stringstream stuur na die terminal.
 		
 		exec(tty.str().c_str()); //ek dink die metode stuur commands na die terminal toe
+		
+		time_t end = time(NULL) + 8;
+		while(time(NULL) <= end);
+		std::stringstream tty_clear;
+		tty_clear << "echo \"" << " " << "\" | pbcopy";
+		exec(tty_clear.str().c_str());
 	}
-
+	
 #elif _WIN32
 	void copy_password_windows(const char* password)
 	{
