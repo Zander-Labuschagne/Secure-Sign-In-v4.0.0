@@ -7,7 +7,7 @@
 	class X11_clipboard
 	{
 	public:
-		void copy(const char *text);
+		void copy(const char *text, long seconds_active);
 		char *paste();
 	private:
 		Display *display = XOpenDisplay(0);
