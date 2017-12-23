@@ -1,5 +1,6 @@
 #ifdef __linux__
 	#include "X11_clipboard.hpp"
+	#include <time.h>
 
 	void X11_clipboard::copy(const char* TEXT) // 
 	{
