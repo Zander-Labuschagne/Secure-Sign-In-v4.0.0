@@ -1,6 +1,8 @@
 #include "SecureSignIn.hpp"
 #include "TTY.hpp"
-#include "X11_clipboard.hpp"
+#ifdef __linux__
+	#include "X11_clipboard.hpp"
+#endif
 #include <sstream>
 
 void display_password(const char* password);
@@ -34,96 +36,97 @@ void copy_password(const char* password)
 		X11_clipboard clipboard;
 		clipboard.copy(password);
 	}
-#endif
 
-void copy_password_macos(const char* password)
-{
-	unsigned short xvix;
-	for(xvix = 0; *(password + xvix) != '\0'; xvix++);
+#elif __MACH__
+	void copy_password_macos(const char* password)
+	{
+		unsigned short xvix;
+		for(xvix = 0; *(password + xvix) != '\0'; xvix++);
+			
+		std::stringstream tty;
+		tty << "echo \"" << password << "\" | pbcopy"; //Ek dink pbcopy is unix shll program om te copy. En ek dink die tty stringstream stuur na die terminal.
 		
-	std::stringstream tty;
-	tty << "echo \"" << password << "\" | pbcopy"; //Ek dink pbcopy is unix shll program om te copy. En ek dink die tty stringstream stuur na die terminal.
-	
-	exec(tty.str().c_str()); //ek dink die metode stuur commands na die terminal toe
-}
+		exec(tty.str().c_str()); //ek dink die metode stuur commands na die terminal toe
+	}
 
-void copy_password_windows(const char* password)
-{
-	copy_password_macos(password); //TODO: Review this
+#elif _WIN32
+	void copy_password_windows(const char* password)
+	{
+		copy_password_macos(password); //TODO: Review this
 
-	//#include "stdafx.h"
-	//#include "windows.h"
-	//#include "string.h"
-	//#include <direct.h>
+		//#include "stdafx.h"
+		//#include "windows.h"
+		//#include "string.h"
+		//#include <direct.h>
 
-///////////////////////////////////////////////////////////////////////////	
-//	if ( !OpenClipboard() )
-//		{
-//			AfxMessageBox( _T("Cannot open the Clipboard") );
-//			return;
-//		}
-//		// Remove the current Clipboard contents
-//		if( !EmptyClipboard() )
-//		{
-//			AfxMessageBox( _T("Cannot empty the Clipboard") );
-//			return;
-//		}
-//		// Get the currently selected data
-//		HGLOBAL hGlob = GlobalAlloc(GMEM_FIXED, 64);
-//		strcpy_s((char*)hGlob, 64, "Current selection\r\n");
-//		// For the appropriate data formats...
-//		if ( ::SetClipboardData( CF_TEXT, hGlob ) == NULL )
-//		{
-//			CString msg;
-//			msg.Format(_T("Unable to set Clipboard data, error: %d"), GetLastError());
-//			AfxMessageBox( msg );
-//			CloseClipboard();
-//			GlobalFree(hGlob);
-//			return;
-//		}
-//		CloseClipboard();
-/////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////	
+	//	if ( !OpenClipboard() )
+	//		{
+	//			AfxMessageBox( _T("Cannot open the Clipboard") );
+	//			return;
+	//		}
+	//		// Remove the current Clipboard contents
+	//		if( !EmptyClipboard() )
+	//		{
+	//			AfxMessageBox( _T("Cannot empty the Clipboard") );
+	//			return;
+	//		}
+	//		// Get the currently selected data
+	//		HGLOBAL hGlob = GlobalAlloc(GMEM_FIXED, 64);
+	//		strcpy_s((char*)hGlob, 64, "Current selection\r\n");
+	//		// For the appropriate data formats...
+	//		if ( ::SetClipboardData( CF_TEXT, hGlob ) == NULL )
+	//		{
+	//			CString msg;
+	//			msg.Format(_T("Unable to set Clipboard data, error: %d"), GetLastError());
+	//			AfxMessageBox( msg );
+	//			CloseClipboard();
+	//			GlobalFree(hGlob);
+	//			return;
+	//		}
+	//		CloseClipboard();
+	/////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////
-//const char* output = "Test";
-//const size_t len = strlen(output) + 1;
-//HGLOBAL hMem =  GlobalAlloc(GMEM_MOVEABLE, len);
-//memcpy(GlobalLock(hMem), output, len);
-//GlobalUnlock(hMem);
-//OpenClipboard(0);
-//EmptyClipboard();
-//SetClipboardData(CF_TEXT, hMem);
-//CloseClipboard();
-/////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
+	//const char* output = "Test";
+	//const size_t len = strlen(output) + 1;
+	//HGLOBAL hMem =  GlobalAlloc(GMEM_MOVEABLE, len);
+	//memcpy(GlobalLock(hMem), output, len);
+	//GlobalUnlock(hMem);
+	//OpenClipboard(0);
+	//EmptyClipboard();
+	//SetClipboardData(CF_TEXT, hMem);
+	//CloseClipboard();
+	/////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////////////////
-//#include <Windows.h>
-//char* LoadClipboard()
-//{
-//	static HANDLE clip;
-//	if(OpenClipboard(NULL))
-//	{
-//		clip = GetClipboardData(CF_TEXT);
-//		CloseClipboard();
-//	}
-//	return (char*) clip;
-//}
-//
-//void SaveClipboard(char* text)
-//{
-//	HGLOBAL global = GlobalAlloc(GMEM_FIXED,strlen(text) + 1); //text size + \0 character
-//	memcpy(global,text,strlen(text));  //text size + \0 character
-//	if(OpenClipboard(NULL))
-//	{
-//		EmptyClipboard();
-//		SetClipboardData(CF_TEXT,global);
-//		CloseClipboard();
-//	}
-//}
-///////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////
+	//#include <Windows.h>
+	//char* LoadClipboard()
+	//{
+	//	static HANDLE clip;
+	//	if(OpenClipboard(NULL))
+	//	{
+	//		clip = GetClipboardData(CF_TEXT);
+	//		CloseClipboard();
+	//	}
+	//	return (char*) clip;
+	//}
+	//
+	//void SaveClipboard(char* text)
+	//{
+	//	HGLOBAL global = GlobalAlloc(GMEM_FIXED,strlen(text) + 1); //text size + \0 character
+	//	memcpy(global,text,strlen(text));  //text size + \0 character
+	//	if(OpenClipboard(NULL))
+	//	{
+	//		EmptyClipboard();
+	//		SetClipboardData(CF_TEXT,global);
+	//		CloseClipboard();
+	//	}
+	//}
+	///////////////////////////////////////////////////////////////////////////////////
 
 
-}
+	}
 
 std::string exec(const char* tty)
 {

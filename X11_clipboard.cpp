@@ -41,6 +41,7 @@
 						xse.property = None;
 					if((r & 2) == 0)
 						XSendEvent(DISPLAY, xse.requestor, 0, 0, (XEvent*)&xse);
+					break;
 			}
 		}
 	}
