@@ -13,7 +13,7 @@
 		if(XGetSelectionOwner(DISPLAY, SELECTION) != WINDOW)
 			return;
 		
-		while(1)
+		//while(1)
 		{
 			XNextEvent(DISPLAY, &event);
 			switch(event.type)
@@ -43,6 +43,7 @@
 						XSendEvent(DISPLAY, xse.requestor, 0, 0, (XEvent*)&xse);
 					break;
 			}
+			//break;
 		}
 	}
 #endif
