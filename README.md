@@ -32,10 +32,10 @@ How to install:
   (Feel free to create a Windows version, I will eventaually do it myself when I get to it)
 
 How to use application:
-  
-1. Enter a password you will remember at the password prompt, preferably a strong and complicated password because this will influence the complexity of the resulting password.
-  
-2. Enter a key, such as twitter, vimeo or whatever at the next prompt.
+
+1.1. Enter a password you will remember at the password prompt, preferably a strong and complicated password because this will influence the complexity of the resulting password.
+
+2.1. Enter a key, such as twitter, vimeo or whatever at the next prompt.
   
 3.1. Enter ``s`` to use a shorter version of the password (Some web services have a shorter limit on the password length).
   
