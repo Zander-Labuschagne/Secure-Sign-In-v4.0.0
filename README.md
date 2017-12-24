@@ -1,5 +1,5 @@
 # SecureSignIn v4a
-This is a C++ CLI application I have created in an attempt to improve my online account security. The _a_ in the version code states that this is the CLI(Command Line Interface) version where _b_ would be the GUI(Graphical User Interface). Find the GUI version at https://github.com/Zander-Labuschagne/Secure-Sign-In-v4b
+This is a C++ CLI application I have created in an attempt to improve my online account security. The _a_ in the version code states that this is the CLI(Command Line Interface) version where _b_ would be the GUI(Graphical User Interface). Find the GUI version at https://github.com/Zander-Labuschagne/SecureSignIn-v4b
 
 Benifits:
   - Remember one password for all sites, but all sites have different passwords.
@@ -8,7 +8,7 @@ Benifits:
   - No passwords are stored in file or database.
   - Easy to use.
   
-This is my first official C++ application, feel free to criticize or comment. I would appreciate criticizem or comments on my coding style since I am not completely sure on the normal conventions, I tried to stick with the Linux kernel style.
+This is my first official C++ application, feel free to criticize or comment. I would appreciate criticism or comments on my coding style since I am not completely sure on the normal conventions, I tried to stick with the Linux kernel style.
 There are Android, iPhone, iPad and macOS applications available as well, however they are not always up to date and I have left some of them discontinued/incomplete. I work on these projects in my free time only so don't expect regular updates from me. This is only compatible on Linux and macOS systems. (There are Windows compatible code but I have not tested it yet and some are not fully implemented yet)
 
 macOS(Swift) version: TBA
