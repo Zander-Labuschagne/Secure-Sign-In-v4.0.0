@@ -34,7 +34,7 @@ void TTY::set_buffer(bool enabled)
 	#endif
 }
 
-#if defined(__MACH__) || defined(__linux__) //Inlcudes Apple(macOS, iOS), UNIX
+#if defined(__MACH__) || defined(__linux__)
 	void TTY::set_echo_unix(bool enabled = true)
 	{
 		tcgetattr(STDIN_FILENO, &tty);
