@@ -20,12 +20,12 @@ iOS(iPhone) version: TBA
 iOS(iPad) version: TBA
 
 E-Mail: <zander.labuschagne@protonmail.ch>
-
 Copyright (C) 2017 Zander Labuschagne. This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.
 
 How to install:
-  1. Either run the SecureSignIn-4.0a-linux file on a Linux operating system with the ``./SecureSignIn-4.0a`` command or run the install.sh file after extracting the zip file to install the application on Linux systems with the following command: ``sudo sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
-  2. On some Linux systems it's necessary to run ``sudo chmod +x install.sh`` before installation.
+  1.1 Linux: Either run the SecureSignIn-4.0a-linux file on a Linux operating system with the ``./SecureSignIn-4.0a-linux`` command or run the install.sh file after extracting the zip file to install the application on Linux systems with the following command: ``sudo sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
+  1.2 macOS: Either run the SecureSignIn-4.0a-macOS file on a macOS operating system with the ``./SecureSignIn-4.0a-macOS`` command or run the install.sh file after extracting the zip file to install the application on macOS systems with the following command: ``sudo sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
+  2. On some Linux and macOS systems it's necessary to run ``sudo chmod +x install.sh`` before installation.
   (Feel free to create a Windows version, I will eventaually do it myself when I get to it)
 
 How to use application:
