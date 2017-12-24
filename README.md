@@ -28,7 +28,7 @@ How to install:
   
 1.2. macOS: Either run the SecureSignIn-4.0a-macOS file on a macOS operating system with the ``./SecureSignIn-4.0a-macOS`` command or run the install.sh file after extracting the zip file to install the application on macOS systems with the following command: ``sudo sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
   
-2. On some Linux and macOS systems it's necessary to run ``sudo chmod +x install.sh`` before installation.
+2.1. On some Linux and macOS systems it's necessary to run ``sudo chmod +x install.sh`` before installation.
   (Feel free to create a Windows version, I will eventaually do it myself when I get to it)
 
 How to use application:
