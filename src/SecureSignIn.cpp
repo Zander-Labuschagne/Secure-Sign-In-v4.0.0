@@ -153,7 +153,7 @@ char* SecureSignIn::encrypt(const char *user_password, const char *key, unsigned
 		for(unsigned short vii = 0; vii < length && vii < limit; vii++)
 			*(cipher_password_limited + vii) = *(cipher_password + vii);
 
-		return cipher_password_limited; //Check
+		return cipher_password_limited; //TODO:Check
 	}
 
 	return cipher_password;

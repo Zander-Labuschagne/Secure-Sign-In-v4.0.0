@@ -1,3 +1,13 @@
+/*
+ * class containing functions to allow interaction with tty session on UNIX systems
+ *
+ * Author:
+ *	Zander Labuschagne <zander.labuschagne@protonmail.ch>
+ *
+ * This should only be compatible with UNIX-like systems, if not please inform me.
+ * I am still learning C++ so if anything is unacceptable or a violation to some standards please inform me.
+*/
+
 #include <sstream>
 
 #if defined (__MACH__) || defined(__linux__)

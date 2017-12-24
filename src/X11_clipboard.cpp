@@ -1,6 +1,11 @@
 #ifdef __linux__
 	#include "X11_clipboard.hpp"
 
+	/*
+	 * Function to copy some text to the X11 main clipboard.
+	 * text contains text to be copied
+	 * seconds_active states the number of seconds the text will stay on the clipboard
+	 */
 	void X11_clipboard::copy(const char *text, long seconds_active)
 	{
 		int size = strlen(text);
@@ -44,7 +49,11 @@
 			}
 		}
 	}
-	
+
+	/*
+	 * Function to paste text from the X11 main clipboard
+	 * returns the text on the X11 main clipboard
+	 */
 	char *X11_clipboard::paste()
 	{
 		Atom atom;
@@ -75,7 +84,7 @@
 			}
 			break;
 		}
-		
+
 		return clipboard;
 	}
 #endif
