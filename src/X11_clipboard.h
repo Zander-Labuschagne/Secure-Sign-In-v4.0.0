@@ -24,7 +24,7 @@
 	Window window = XCreateSimpleWindow(display, RootWindow(display, N), 0, 0, 1, 1, 0, BlackPixel(display, N), WhitePixel(display, N));
 	XEvent event;
 	Atom atom_targets = XInternAtom(display, "TARGETS", 0);
-	Atom UTF8 = XInternAtom(display, "UTF8_STRING", true);
+	Atom UTF8 = XInternAtom(display, "UTF8_STRING", 1);
 	const Atom XA_STRING = 31;
 	const Atom SELECTION = XInternAtom(display, "CLIPBOARD", 0);
 #endif

@@ -1,5 +1,5 @@
 #ifdef __linux__
-	#include "X11_clipboard.hpp"
+	#include "X11_clipboard.h"
 
 	/*
 	 * Function to copy some text to the X11 main clipboard.
