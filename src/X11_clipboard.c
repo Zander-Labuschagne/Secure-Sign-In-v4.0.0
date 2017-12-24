@@ -24,8 +24,8 @@
 
 		time_t end = time(NULL) + seconds_active; //declare end time equal to current time + seconds_active seconds
 		while (time(NULL) <= end) { // execute while current time is less than end time
-			XNextEvent(display, &event);
 			XEvent event;
+			XNextEvent(display, &event);
 			switch (event.type) {
 			case SelectionRequest:
 				if (event.xselectionrequest.selection != SELECTION)

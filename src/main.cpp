@@ -88,8 +88,9 @@ void copy_password(const char *password)
 #ifdef __linux__
 	void copy_password_linux(const char *password)
 	{
-		X11_clipboard clipboard;
-		clipboard.copy(password, 8);
+		//X11_clipboard clipboard;
+		//clipboard.copy(password, 8);
+		copy(password, 8);
 	}
 
 #elif __MACH__
