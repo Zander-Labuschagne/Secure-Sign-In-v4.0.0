@@ -33,18 +33,18 @@ How to install:
 
 How to use application:
   
-  1. Enter a password you will remember at the password prompt, preferably a strong and complicated password because this will influence the complexity of the resulting password.
+1. Enter a password you will remember at the password prompt, preferably a strong and complicated password because this will influence the complexity of the resulting password.
   
-  2. Enter a key, such as twitter, vimeo or whatever at the next prompt.
+2. Enter a key, such as twitter, vimeo or whatever at the next prompt.
   
-  3.1. Enter ``s`` to use a shorter version of the password (Some web services have a shorter limit on the password length).
+3.1. Enter ``s`` to use a shorter version of the password (Some web services have a shorter limit on the password length).
   
-  3.2. Enter ``l`` to use the default long version of the password.
+3.2. Enter ``l`` to use the default long version of the password.
   
-  3.3. Enter ``q`` to exit immediately.
+3.3. Enter ``q`` to exit immediately.
   
-  4.1. Enter ``c`` to copy the password to memory, caution this will only last for 8 seconds until the password is cleared from memory. Paste the password in the password box on the website you are signing into.
+4.1. Enter ``c`` to copy the password to memory, caution this will only last for 8 seconds until the password is cleared from memory. Paste the password in the password box on the website you are signing into.
   
-  4.2. Enter ``v`` to view the password if you need to type it over manually.
+4.2. Enter ``v`` to view the password if you need to type it over manually.
   
-  4.3. Enter ``q`` to exit immediately.
+4.3. Enter ``q`` to exit immediately.
