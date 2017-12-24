@@ -6,7 +6,7 @@
 	 * text contains text to be copied
 	 * seconds_active states the number of seconds the text will stay on the clipboard
 	 */
-	void X11_clipboard::copy(const char *text, long seconds_active)
+	void copy(const char *text, long seconds_active)
 	{
 		int size = strlen(text);
 		if (UTF8 == None)
@@ -54,7 +54,7 @@
 	 * Function to paste text from the X11 main clipboard
 	 * returns the text on the X11 main clipboard
 	 */
-	char *X11_clipboard::paste()
+	char *paste()
 	{
 		Atom atom;
 		if (UTF8 != None)
