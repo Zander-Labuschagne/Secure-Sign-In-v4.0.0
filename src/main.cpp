@@ -2,6 +2,7 @@
 //export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.
 
 #include <iostream>
+#include <sstream>
 #include <string.h>
 
 #include "../include/main.hpp"
