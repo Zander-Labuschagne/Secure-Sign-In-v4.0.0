@@ -1,9 +1,17 @@
 //Exception handling?
-//is dit nodig om te cast?
 //Moet ek soos die pointers gebruik? Of arrays? of vectors?
-//Indien arrays... new array of net skoon?
 //Benchmark die verskillende implementyerings
-#include "SecureSignIn.hpp"
+
+#include <iostream>
+
+#include "../include/SecureSignIn.hpp"
+
+/*
+ * Author:
+ *	Zander Labuschagne <zander.labuschagne@protonmail.ch>
+ *
+ * I am still learning C++ so if anything is unacceptable or a violation to some standards please inform me.
+*/
 
 char* SecureSignIn::encrypt(const char *user_password, const char *key, unsigned short limit)
 {

@@ -1,10 +1,81 @@
 //Document:
 //export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.
 
-#include "main.hpp"
+#include <iostream>
+#include <string.h>
 
-int main(void) //TODO: Add arguments
+#include "../include/main.hpp"
+#include "../include/SecureSignIn.hpp"
+#include "../include/TTY.hpp"
+
+#ifdef __linux__
+	#include "../include/X11_clipboard.h"
+#endif
+
+/*
+ * Author:
+ *	Zander Labuschagne <zander.labuschagne@protonmail.ch>
+ *
+ * I am still learning C++ so if anything is unacceptable or a violation to some standards please inform me.
+*/
+
+int main(int argc, char **argv)
 {
+	char option1 = '.';
+	char option2 = '.';
+
+	for (unsigned short arg = 1; arg < argc; arg++) {
+		if (strlen(argv[arg]) < 2) {
+			std::cerr << "Argument \"" << argv[arg] << "\" is not defined in Secure Sign In v4.1.x" << std::endl << "Try 'ssi --help' for more information." << std::endl;
+			return 0;
+		}
+		if (strlen(argv[arg]) > 2 && argv[arg][0] == '-' && argv[arg][1] == '-') {
+			if (strcmp(argv[arg], "--long") == 0)
+				option1 = 'l';
+			else if (strcmp(argv[arg], "--short") == 0)
+				option1 = 's';
+			else if (strcmp(argv[arg], "--copy") == 0)
+				option2 = 'c';
+			else if (strcmp(argv[arg], "--verbose") == 0)
+				option2 = 'v';
+			else if (strcmp(argv[arg], "--help") == 0) {
+				print_help();
+				return 0;
+			}
+			else {
+				std::cerr << "Argument \"" << argv[arg] << "\" is not defined in Secure Sign In v4.1.x" << std::endl << "Try 'ssi --help' for more information." << std::endl;
+				return 0;
+			}
+		}
+		else if (strlen(argv[arg]) >= 2 && argv[arg][0] == '-') {
+			for (unsigned short xx = 1; xx < strlen(argv[arg]); ++xx) {
+				switch (argv[arg][xx]) {
+				case 'l':
+					option1 = 'l';
+					break;
+				case 's':
+					option1 = 's';
+					break;
+				case 'c':
+					option2 = 'c';
+					break;
+				case 'v':
+					option2 = 'v';
+					break;
+				case 'h':
+					print_help();
+					return 0;
+				default:
+					std::cerr << "Argument \"" << argv[arg] << "\" is not defined in Secure Sign In v4.1.x" << std::endl << "Try 'ssi --help' for more information." << std::endl;
+					return 0;
+				}
+			}
+		} else {
+				std::cerr << "Argument \"" << argv[arg] << "\" is not defined in Secure Sign In v4.1.x" << std::endl << "Try 'ssi --help' for more information." << std::endl;
+				return 0;
+		}
+	}
+
 	TTY tty;
 
 	tty.set_echo(false); //Hide input - Also see getch() for C
@@ -20,17 +91,18 @@ int main(void) //TODO: Add arguments
 	tty.set_echo(true);
 	tty.set_buffer(false);
 
-	std::cout << "Enter \'s\' to use the short version of the password." << std::endl;
-	std::cout << "Enter \'l\' to use the long version of the password. (Default)" << std::endl;
-	std::cout << "Enter \'q\' to exit the application." << std::endl;
-	char option;
-	std::cin >> option;
-	std::cout << std::endl;
+	if (option1 == '.') {
+		std::cout << "Enter \'s\' to use the short version of the password." << std::endl;
+		std::cout << "Enter \'l\' to use the long version of the password. (Default)" << std::endl;
+		std::cout << "Enter \'q\' to exit the application." << std::endl;
+		std::cin >> option1;
+		std::cout << std::endl;
+	}
 
 	SecureSignIn ssi;
 	char *cipher_password;
 
-	switch (option) {
+	switch (option1) {
 	case 's':
 		cipher_password =  ssi.encrypt(&(password[0]), &(key[0]), 12);
 		break;
@@ -40,17 +112,19 @@ int main(void) //TODO: Add arguments
 	case 'q':
 		return 0;
 	default:
-		std::cout << "Terminating application due to user disobedience." << std::endl;
+		std::cerr << "Terminating application due to user disobedience." << std::endl << "Try 'ssi --help' for more information." << std::endl;
 		return 0;
 	}
 
-	std::cout << "Enter \'c\' to copy the password and exit the application." << std::endl;
-	std::cout << "Enter \'v\' to view/display the password on screen and exit the application." << std::endl;
-	std::cout << "Enter \'q\' to exit the application." << std::endl;
-	std::cin >> option;
-	std::cout << std::endl;
+	if (option2 == '.') {
+		std::cout << "Enter \'c\' to copy the password and exit the application." << std::endl;
+		std::cout << "Enter \'v\' to view/display the password on screen and exit the application." << std::endl;
+		std::cout << "Enter \'q\' to exit the application." << std::endl;
+		std::cin >> option2;
+		std::cout << std::endl;
+	}
 
-	switch (option) {
+	switch (option2) {
 	case 'c':
 		copy_password(cipher_password);
 		return 0;
@@ -60,11 +134,31 @@ int main(void) //TODO: Add arguments
 	case 'q':
 		return 0;
 	default:
-		std::cout << "Terminating application due to user disobedience." << std::endl;
+		std::cerr << "Terminating application due to user disobedience." << std::endl << "Try 'ssi --help' for more information." << std::endl;
 		return 0;
 	}
 
 	return 0;
+}
+
+void print_help() //TODO: Maak 'n man page
+{
+	std::cout << "Secure Sign In v4.1a ( https://github.com/Zander-Labuschagne/SecureSignIn-v4a )" << std::endl;
+	
+	std::cout << std::endl;
+	std::cout << "Usage: ssi [OPTIONS]..." << std::endl;
+	std::cout << "\t-l, --long\t\tDefault long version of the password" << std::endl;
+	std::cout << "\t-s, --short\t\tShort version of the password" << std::endl;
+	std::cout << "\t-c, --copy\t\tCopies the password to memory for 8 seconds" << std::endl; //TODO: Maybe add an argument option to specify the number of seconds the password stays in RAM
+	std::cout << "\t-v, --verbose\t\tDisplays the password on the terminal screen if needed to type over manually" << std::endl << "\t\t\t\t(not safe -- only use when absolutely necessary)" << std::endl;
+	std::cout << "\t-h, --help\t\tDisplays this help menu" << std::endl;
+	
+	std::cout << std::endl;
+	std::cout << "EXAMPLES:" << std::endl;
+	std::cout << "\tssi -lc" << std::endl;
+	std::cout << "\tssi -l -c" << std::endl;
+	std::cout << "\tssi -c" << std::endl;
+	std::cout << "\tssi --long --copy" << std::endl;
 }
 
 void display_password(const char *password)

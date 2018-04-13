@@ -1,7 +1,7 @@
 # SecureSignIn v4a
 This is a C++ CLI application I have created in an attempt to improve my online account security. The _a_ in the version code states that this is the CLI(Command Line Interface) version where _b_ would be the GUI(Graphical User Interface). Find the GUI version at https://github.com/Zander-Labuschagne/SecureSignIn-v4b
 
-Benifits:
+Benefits:
   - Remember one password for all sites, but all sites have different passwords.
   - Don't know the actual password which is entered in the password box on the website.
   - Provides a very strong, long and complex password.
@@ -24,27 +24,38 @@ Copyright (C) 2017 Zander Labuschagne. This program is free software: you can re
 
 **How to install:**
 
-**1.1. Linux:** Either run the SecureSignIn-4.0a-linux file on a Linux operating system with the ``./SecureSignIn-4.0a-linux`` command or run the install.sh file after extracting the zip file to install the application on Linux systems with the following command: ``sudo sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
+**1.1. Linux:** Either run the SecureSignIn-4.1a-linux file on a Linux operating system with the ``./SecureSignIn-4.1a-linux`` command or run the install.sh file after extracting the zip file to install the application on Linux systems with the following command: ``sudo sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
   
-**1.2. macOS:** Either run the SecureSignIn-4.0a-macOS file on a macOS operating system with the ``./SecureSignIn-4.0a-macOS`` command or run the install.sh file after extracting the zip file to install the application on macOS systems with the following command: ``sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
+**1.2. macOS:** Either run the SecureSignIn-4.1a-macOS file on a macOS operating system with the ``./SecureSignIn-4.1a-macOS`` command or run the install.sh file after extracting the zip file to install the application on macOS systems with the following command: ``sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
   
 2.1. On some Linux and macOS systems it's necessary to run ``sudo chmod +x install.sh`` before installation.
-  (Feel free to create a Windows version, I will eventaually do it myself when I get to it)
+  (Feel free to create a Windows version, I will eventually do it myself when I get to it)
 
 **How to use application:**
 
-1.1. Enter a password you will remember at the password prompt, preferably a strong and complicated password because this will influence the complexity of the resulting password.
+1. Run the application in terminal with the command ``ssi''.
 
-2.1. Enter a key, such as twitter, vimeo or whatever at the next prompt.
+1.1. Optional arguments may be added to the command such as ``ssi -l -c`` or ``ssi -lc`` which is handy if you already know what you want to do and prefer not to be prompted by the application each time resulting in a quicker interaction and immediate result.
+
+1.1.1. Optional arguments:
+	-l, --long	The resulting password will be the default long version.
+	-s, --short	The resulting password will be a shortened version of the original default password.
+	-c, --copy	The resulting password will be copied to memory for a few seconds after which it will be removed from memory.
+	-v, --verbose	The resulting password will be displayed on the terminal screen if needed to type over manually (not safe -- only use when absolutely necessary).
+	-h, --help	Displays the help menu.
+
+2.1. Enter a password you will remember at the password prompt, preferably a strong and complicated password because this will influence the complexity of the resulting password.
+
+3.1. Enter a key, such as twitter, vimeo or whatever at the next prompt.
   
-3.1. Enter ``s`` to use a shorter version of the password (Some web services have a shorter limit on the password length).
+4.1. Enter ``s`` to use a shorter version of the password (Some web services have a shorter limit on the password length).
   
-3.2. Enter ``l`` to use the default long version of the password.
-  
-3.3. Enter ``q`` to exit immediately.
-  
-4.1. Enter ``c`` to copy the password to memory, caution this will only last for 8 seconds until the password is cleared from memory. Paste the password in the password box on the website you are signing into.
-  
-4.2. Enter ``v`` to view the password if you need to type it over manually.
+4.2. Enter ``l`` to use the default long version of the password.
   
 4.3. Enter ``q`` to exit immediately.
+  
+5.1. Enter ``c`` to copy the password to memory, caution this will only last for 8 seconds until the password is cleared from memory. Paste the password in the password box on the website you are signing into.
+  
+5.2. Enter ``v`` to view the password if you need to type it over manually (not safe -- only use when absolutely necessary).
+  
+5.3. Enter ``q`` to exit immediately.
