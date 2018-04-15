@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mkdir /opt/Cryogen
 rm /opt/Cryogen/SecureSignIn-*
+mkdir /opt/Cryogen
 rm /usr/bin/ssi
 cp SecureSignIn-4.1a-linux /opt/Cryogen/
 touch /usr/bin/ssi
