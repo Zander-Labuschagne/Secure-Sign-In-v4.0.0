@@ -12,10 +12,6 @@
 */
 
 #ifdef __linux__
-	#include <string.h>
-	#include <time.h>
-	#include <X11/Xlib.h>
-
-	void copy(const char *text, long seconds_active);
+	void copy(const char *, long);
 	char *paste();
 #endif
