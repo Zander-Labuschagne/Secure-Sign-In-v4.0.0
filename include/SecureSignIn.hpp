@@ -1,4 +1,6 @@
 /*
+ * Class containing encryption function(s) for the Secure Sign In application
+ * 
  * Author:
  *	Zander Labuschagne <zander.labuschagne@protonmail.ch>
  *

@@ -7,12 +7,21 @@
 #include "../include/SecureSignIn.hpp"
 
 /*
+ * Class containing encryption function(s) for the Secure Sign In application
+ * 
  * Author:
  *	Zander Labuschagne <zander.labuschagne@protonmail.ch>
  *
  * I am still learning C++ so if anything is unacceptable or a violation to some standards please inform me.
 */
 
+/*
+* Function to encrypt text, used for the encryption of passwords in the Secure Sign In application.
+* user_password contains plain text password to be encrypted.
+* key contains the key entered by the user, could be anything, even the password.
+* limit specifies the limit of the password length, some websites have limitations on the password length.
+* returns an encrypted password that should be more complex and appears random.
+*/
 char* SecureSignIn::encrypt(const char *user_password, const char *key, unsigned short limit)
 {
 	char *system_password;

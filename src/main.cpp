@@ -14,12 +14,19 @@
 #endif
 
 /*
+ * Main Secure Sign In program (entry point).
+ *
  * Author:
  *	Zander Labuschagne <zander.labuschagne@protonmail.ch>
  *
  * I am still learning C++ so if anything is unacceptable or a violation to some standards please inform me.
 */
 
+
+/*
+* The main function.
+* Also known as the netry point for the program.
+*/
 int main(int argc, char **argv)
 {
 	char option1 = '.';
@@ -144,13 +151,13 @@ int main(int argc, char **argv)
 
 void print_help() //TODO: Maak 'n man page
 {
-	std::cout << "Secure Sign In v4.1a ( https://github.com/Zander-Labuschagne/SecureSignIn-v4a )" << std::endl;
+	std::cout << "Secure Sign In v4.1a ( https://gitlab.com/Zander-Labuschagne/SecureSignIn-v4a )" << std::endl;
 	
 	std::cout << std::endl;
 	std::cout << "Usage: ssi [OPTIONS]..." << std::endl;
-	std::cout << "\t-l, --long\t\tDefault long version of the password" << std::endl;
+	std::cout << "\t-l, --long\t\tLong(Default) version of the password" << std::endl;
 	std::cout << "\t-s, --short\t\tShort version of the password" << std::endl;
-	std::cout << "\t-c, --copy\t\tCopies the password to memory for 8 seconds" << std::endl; //TODO: Maybe add an argument option to specify the number of seconds the password stays in RAM
+	std::cout << "\t-c, --copy\t\tCopies the password to memory for 8 seconds before it is removed from memory" << std::endl; //TODO: Maybe add an argument option to specify the number of seconds the password stays in RAM
 	std::cout << "\t-v, --verbose\t\tDisplays the password on the terminal screen if needed to type over manually" << std::endl << "\t\t\t\t(not safe -- only use when absolutely necessary)" << std::endl;
 	std::cout << "\t-h, --help\t\tDisplays this help menu" << std::endl;
 	
@@ -197,7 +204,7 @@ void copy_password(const char *password)
 			*(trimmed_password + xix) = *(password + xix); 
 
 		std::stringstream tty_command;
-		tty_command << "echo \"" << trimmed_password << "\" | pbcopy"; //Ek dink pbcopy is unix shll program om te copy. En ek dink die tty stringstream stuur na die terminal.
+		tty_command << "echo \"" << trimmed_password << "\" | pbcopy"; //Ek dink pbcopy is unix shell program om te copy. En ek dink die tty stringstream stuur na die terminal.
 
 		TTY tty;
 		tty.execute_command(tty_command.str().c_str()); //ek dink die metode stuur commands na die terminal toe
