@@ -1,7 +1,7 @@
 # SecureSignIn v4a
 This is a C++ CLI application I have created in an attempt to improve my online account security. The _a_ in the version code states that this is the CLI(Command Line Interface) version where _b_ would be the GUI(Graphical User Interface). Find the GUI version at https://gitlab.com/Zander-Labuschagne/SecureSignIn-v4b or https://github.com/Zander-Labuschagne/SecureSignIn-v4b
 
-Benefits:
+### Benefits:
   - Remember one password for all sites, but all sites have different passwords.
   - Don't know the actual password which is entered in the password box on the website.
   - Provides a very strong, long and complex password.
@@ -23,9 +23,10 @@ E-Mail: <zander.labuschagne@protonmail.ch>
 Copyright (C) 2017 Zander Labuschagne. This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.
 
 ## How to install:
-
-* **Linux:** Either run the SecureSignIn-4.1a-linux file on a Linux operating system with the ``./SecureSignIn-4.1a-linux`` command or run the install.sh file after extracting the zip file to install the application on Linux systems with the following command: ``sudo sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
-* **macOS:** Either run the SecureSignIn-4.1a-macOS file on a macOS operating system with the ``./SecureSignIn-4.1a-macOS`` command or run the install.sh file after extracting the zip file to install the application on macOS systems with the following command: ``sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
+### Linux:
+Either run the SecureSignIn-4.1a-linux file on a Linux operating system with the ``./SecureSignIn-4.1a-linux`` command or run the install.sh file after extracting the zip file to install the application on Linux systems with the following command: ``sudo sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
+### macOS:
+Either run the SecureSignIn-4.1a-macOS file on a macOS operating system with the ``./SecureSignIn-4.1a-macOS`` command or run the install.sh file after extracting the zip file to install the application on macOS systems with the following command: ``sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
   
 _On some Linux and macOS systems it's necessary to run ``sudo chmod +x install.sh`` before installation.
   (Feel free to create a Windows version, I will eventually do it myself when I get to it)_
@@ -34,7 +35,8 @@ _On some Linux and macOS systems it's necessary to run ``sudo chmod +x install.s
 
 1. Run the application in terminal with the command ``ssi``.
     * Optional arguments may be added to the command such as ``ssi -l -c`` or ``ssi -lc`` which is handy if you already know what you want to do and prefer not to be prompted by the application each time resulting in a quicker interaction and immediate result.
-        ***Optional arguments:***
+        
+    ***Optional arguments:***
         * ``-l``, ``--long``	The resulting password will be the default long version.
 	    * ``-s``, ``--short``	The resulting password will be a shortened version of the original default password.
 	    * ``-c``, ``--copy``	The resulting password will be copied to memory for a few seconds after which it will be removed from memory.
