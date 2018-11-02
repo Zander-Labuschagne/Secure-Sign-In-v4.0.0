@@ -35,26 +35,19 @@ Copyright (C) 2017 Zander Labuschagne. This program is free software: you can re
 
 1. Run the application in terminal with the command ``ssi``.
     * Optional arguments may be added to the command such as ``ssi -l -c`` or ``ssi -lc`` which is handy if you already know what you want to do and prefer not to be prompted by the application each time resulting in a quicker interaction and immediate result.
-
         Optional arguments:
         * -l, --long	The resulting password will be the default long version.
 	    * -s, --short	The resulting password will be a shortened version of the original default password.
 	    * -c, --copy	The resulting password will be copied to memory for a few seconds after which it will be removed from memory.
 	    * -v, --verbose	The resulting password will be displayed on the terminal screen if needed to type over manually (not safe -- only use when absolutely necessary).
 	    * -h, --help	Displays the help menu.
-
-2.1. Enter a password you will remember at the password prompt, preferably a strong and complicated password because this will influence the complexity of the resulting password.
-
-3.1. Enter a key, such as twitter, vimeo or whatever at the next prompt.
-  
-4.1. Enter ``s`` to use a shorter version of the password (Some web services have a shorter limit on the password length).
-  
-4.2. Enter ``l`` to use the default long version of the password.
-  
-4.3. Enter ``q`` to exit immediately.
-  
-5.1. Enter ``c`` to copy the password to memory, caution this will only last for 8 seconds until the password is cleared from memory. Paste the password in the password box on the website you are signing into.
-  
-5.2. Enter ``v`` to view the password if you need to type it over manually (not safe -- only use when absolutely necessary).
-  
-5.3. Enter ``q`` to exit immediately.
+2. Enter a password you will remember at the password prompt, preferably a strong and complicated password because this will influence the complexity of the resulting password.
+3. Enter a key, such as twitter, vimeo or whatever at the next prompt.
+4. Choose one of the options below:
+    * Enter ``s`` to use a shorter version of the password (Some web services have a shorter limit on the password length).
+    * Enter ``l`` to use the default long version of the password.
+    * Enter ``q`` to exit immediately.
+5. Choose one of the options below:
+    * Enter ``c`` to copy the password to memory, caution this will only last for 8 seconds until the password is cleared from memory. Paste the password in the password box on the website you are signing into.
+    * Enter ``v`` to view the password if you need to type it over manually (not safe -- only use when absolutely necessary).
+    * Enter ``q`` to exit immediately.
