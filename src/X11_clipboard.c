@@ -1,10 +1,27 @@
 #ifdef __linux__
-	#include "X11_clipboard.h"
+	#include <string.h>
+	#include <time.h>
+	#include <X11/Xlib.h>
+	
+	#include "../include/X11_clipboard.h"
+
+	/*
+	* X11_clipboard: C functions to use the main clipboard object of X11.
+	* 90% of this code is borrowed from exebook's barebones implementation: https://github.com/exebook/x11clipboard.
+	* I have just added abstraction by merging everything into two simple and easy to use functions in one C program for my own use.
+	*
+	* Author:
+	*	Zander Labuschagne <zander.labuschagne@protonmail.ch>
+	*
+	* To compile add -X11 argument to gcc to include the X11 libraries.
+	* This should only be compatible with Linux systems, if not please inform me.
+	* I am still learning C++ so if anything is unacceptable or a violation to some standards please inform me.
+	*/
 
 	/*
 	 * Function to copy some text to the X11 main clipboard.
-	 * text contains text to be copied
-	 * seconds_active states the number of seconds the text will stay on the clipboard
+	 * text contains text to be copied.
+	 * seconds_active states the number of seconds the text will stay on the clipboard.
 	 */
 	void copy(const char *text, long seconds_active)
 	{
@@ -59,8 +76,8 @@
 	}
 
 	/*
-	 * Function to paste text from the X11 main clipboard
-	 * returns the text on the X11 main clipboard
+	 * Function to paste text from the X11 main clipboard.
+	 * returns the text on the X11 main clipboard.
 	 */
 	char *paste()
 	{

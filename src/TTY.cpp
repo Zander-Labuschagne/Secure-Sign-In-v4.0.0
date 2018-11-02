@@ -1,4 +1,23 @@
-#include "TTY.hpp"
+#include <sstream>
+
+#if defined (__MACH__) || defined(__linux__)
+	#include <unistd.h>
+#elif _WIN32
+	#include <windows.h>
+#endif
+
+#include "../include/TTY.hpp"
+
+/*
+ * class containing functions to allow interaction with tty session on UNIX systems
+ *
+ * Author:
+ *	Zander Labuschagne <zander.labuschagne@protonmail.ch>
+ *
+ * This should only be compatible with UNIX-like systems, if not please inform me.
+ * I am still learning C++ so if anything is unacceptable or a violation to some standards please inform me.
+ */
+
 
 std::string TTY::execute_command(const char *tty)
 {
