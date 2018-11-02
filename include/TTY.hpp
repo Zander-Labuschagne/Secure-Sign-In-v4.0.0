@@ -5,7 +5,7 @@
 #endif
 
 /*
- * class containing functions to allow interaction with tty session on UNIX systems
+ * Class containing functions to allow interaction with tty session on UNIX systems.
  *
  * Author:
  *	Zander Labuschagne <zander.labuschagne@protonmail.ch>

@@ -5,6 +5,7 @@
  *	Zander Labuschagne <zander.labuschagne@protonmail.ch>
  *
  * I am still learning C++ so if anything is unacceptable or a violation to some standards please inform me.
+ * g++: -lX11
 */
 
 

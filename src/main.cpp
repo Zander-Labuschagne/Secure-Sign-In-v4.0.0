@@ -135,18 +135,22 @@ int main(int argc, char **argv)
 	switch (option2) {
 	case 'c':
 		copy_password(cipher_password);
+		free(cipher_password);
 		return 0;
 	case 'v':
 		display_password(cipher_password);
+		free(cipher_password);
 		return 0;
 	case 'q':
+		free(cipher_password);
 		return 0;
 	default:
 		std::cerr << "Terminating application due to user disobedience." << std::endl << "Try 'ssi --help' for more information." << std::endl;
+		free(cipher_password);
 		return 0;
 	}
 
-	return 0;
+	return -1;
 }
 
 void print_help() //TODO: Maak 'n man page
