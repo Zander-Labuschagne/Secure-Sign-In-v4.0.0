@@ -22,25 +22,24 @@ iOS(iPad) version: TBA
 E-Mail: <zander.labuschagne@protonmail.ch>
 Copyright (C) 2017 Zander Labuschagne. This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.
 
-**How to install:**
+##How to install:
 
-**1.1. Linux:** Either run the SecureSignIn-4.1a-linux file on a Linux operating system with the ``./SecureSignIn-4.1a-linux`` command or run the install.sh file after extracting the zip file to install the application on Linux systems with the following command: ``sudo sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
-  
-**1.2. macOS:** Either run the SecureSignIn-4.1a-macOS file on a macOS operating system with the ``./SecureSignIn-4.1a-macOS`` command or run the install.sh file after extracting the zip file to install the application on macOS systems with the following command: ``sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
+* **Linux:** Either run the SecureSignIn-4.1a-linux file on a Linux operating system with the ``./SecureSignIn-4.1a-linux`` command or run the install.sh file after extracting the zip file to install the application on Linux systems with the following command: ``sudo sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
+* **macOS:** Either run the SecureSignIn-4.1a-macOS file on a macOS operating system with the ``./SecureSignIn-4.1a-macOS`` command or run the install.sh file after extracting the zip file to install the application on macOS systems with the following command: ``sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
   
 2.1. On some Linux and macOS systems it's necessary to run ``sudo chmod +x install.sh`` before installation.
   (Feel free to create a Windows version, I will eventually do it myself when I get to it)
 
-**How to use application:**
+##How to use application:
 
 1. Run the application in terminal with the command ``ssi``.
     * Optional arguments may be added to the command such as ``ssi -l -c`` or ``ssi -lc`` which is handy if you already know what you want to do and prefer not to be prompted by the application each time resulting in a quicker interaction and immediate result.
-        Optional arguments:
-        * -l, --long	The resulting password will be the default long version.
-	    * -s, --short	The resulting password will be a shortened version of the original default password.
-	    * -c, --copy	The resulting password will be copied to memory for a few seconds after which it will be removed from memory.
-	    * -v, --verbose	The resulting password will be displayed on the terminal screen if needed to type over manually (not safe -- only use when absolutely necessary).
-	    * -h, --help	Displays the help menu.
+        ***Optional arguments:***
+        * ``-l``, ``--long``	The resulting password will be the default long version.
+	    * ``-s``, ``--short``	The resulting password will be a shortened version of the original default password.
+	    * ``-c``, ``--copy``	The resulting password will be copied to memory for a few seconds after which it will be removed from memory.
+	    * ``-v``, ``--verbose``	The resulting password will be displayed on the terminal screen if needed to type over manually (not safe -- only use when absolutely necessary).
+	    * ``-h``, ``--help``	Displays the help menu.
 2. Enter a password you will remember at the password prompt, preferably a strong and complicated password because this will influence the complexity of the resulting password.
 3. Enter a key, such as twitter, vimeo or whatever at the next prompt.
 4. Choose one of the options below:
