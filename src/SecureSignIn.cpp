@@ -13,6 +13,7 @@
  *	Zander Labuschagne <zander.labuschagne@protonmail.ch>
  *
  * I am still learning C++ so if anything is unacceptable or a violation to some standards please inform me.
+ * TODO: Experiment with vectors
 */
 
 /*
@@ -33,6 +34,7 @@ char* SecureSignIn::encrypt(const char *user_password, const char *key, unsigned
 	unsigned short ii = 0;
 	unsigned short pos = 0;
 	unsigned short spec_char_count = 0;
+
 
 	//for(char t : user_password)
 	unsigned short password_length = 0;
@@ -82,26 +84,25 @@ char* SecureSignIn::encrypt(const char *user_password, const char *key, unsigned
 	free(spec_chars);
 
 	short ext = -1;
-	if (i > 32)
+	if (i > 32 && limit > 12)
 		while (1) {
 			std::cout << "Warning: Password is longer than 32 characters" << std::endl << "Would you like to shorten the password to the 32 limit? (y/n)" << std::endl;
 			std::string input;
 			std::cin >> input;
-			if (input == "yes" || input == "y") {
+			if (toupper(input[0]) == 'Y') {
 				ext = 1;
 				break;
-			} else if (input == "no" || input == "n") {
+			} else if (toupper(input[0]) == 'N') {
 				break;
 			}
 			std::cout << "You have entered an inapropriate answer given the issue. Please try again.";
 		}
 
-	unsigned short length = 0;
-	for (unsigned short x = 0; *(final_password + x) != '\0'; x++)
-		length++; //Die maak die password so klein as moontlik(geen null characters aan die einde) -> kan ek die bypass omdat dit C++ pointers is?
+	unsigned short length;
+	for (length = 0; *(final_password + length) != '\0'; ++length);//Die maak die password so klein as moontlik(geen null characters aan die einde) -> kan ek die bypass omdat dit C++ pointers is?
 	char* cipher_password;
 	cipher_password = (char*)malloc(length);
-	for (unsigned short xi = 0; xi < length /*&& xi < cipher_password.length*/ ; xi++)
+	for (unsigned short xi = 0; xi < length /*&& xi < cipher_password.length*/ ; ++xi)
 		*(cipher_password + xi) = *(final_password + xi);
 
 	free(final_password);	
@@ -112,14 +113,14 @@ char* SecureSignIn::encrypt(const char *user_password, const char *key, unsigned
 	char *odds;
 	odds = (char*)malloc(256);
 	unsigned short xii = 0, xiii = 0;
-	for (unsigned short iii = 0; iii < length; iii++)
+	for (unsigned short iii = 0; iii < length; ++iii)
 		if ((unsigned short)(*(cipher_password + iii) % 2 == 0))
 			*(evens + xii++) = *(cipher_password + iii);
 		else
 			*(odds + xiii++) = *(cipher_password + iii);
 	char *odds_reversed;
 	odds_reversed = (char*)malloc(xiii);
-	for (unsigned short xvi = 0, xvii = xiii; xvii > 0; xvii--, xvi++) //Reverse odds, like stack
+	for (unsigned short xvi = 0, xvii = xiii; xvii > 0; xvii--, ++xvi) //Reverse odds, like stack
 		*(odds_reversed + xvi) = *(odds + xvii - 1);
 	free(odds);
 
@@ -141,7 +142,7 @@ char* SecureSignIn::encrypt(const char *user_password, const char *key, unsigned
 	free(evens);
 
 	//Encrypt special chars further
-	for (unsigned short v = 0; v < length/*cipher_password.lerngth*/; v++)
+	for (unsigned short v = 0; v < length/*cipher_password.lerngth*/; ++v)
 		if ((unsigned short)(*(cipher_password + v)) <= 47) {
 			*(cipher_password + v) += 10;
 		} else if ((unsigned short)(*(cipher_password + v)) > 47 && (unsigned short)(*(cipher_password + v)) < 64) {
@@ -154,7 +155,7 @@ char* SecureSignIn::encrypt(const char *user_password, const char *key, unsigned
 		}
 
 	//Replacing unloved characters
-	for (unsigned short vi = 0; vi < length; vi++) //As ek length so gaan gebruik moet hy const word
+	for (unsigned short vi = 0; vi < length; ++vi) //As ek length so gaan gebruik moet hy const word
 		if ((unsigned short)(*(cipher_password + vi)) == 34)
 			*(cipher_password + vi) = 123;
 		else if ((unsigned short)(*(cipher_password + vi)) == 38)
@@ -166,8 +167,8 @@ char* SecureSignIn::encrypt(const char *user_password, const char *key, unsigned
 
 	//Limitations
 	if(ext == 1 || limit < 32) {
-		char* cipher_password_limited;
-		for(unsigned short vii = 0; vii < length && vii < limit; vii++)
+		char* cipher_password_limited = (char*)malloc(length);
+		for(unsigned short vii = 0; vii < length && vii < limit; ++vii)
 			*(cipher_password_limited + vii) = *(cipher_password + vii);
 
 		return cipher_password_limited; //TODO:Check
