@@ -33,12 +33,10 @@ Copyright (C) 2017 Zander Labuschagne. This program is free software: you can re
 
 **How to use application:**
 
-1. Run the application in terminal with the command ``ssi''.
-
-1.1. Optional arguments may be added to the command such as ``ssi -l -c`` or ``ssi -lc`` which is handy if you already know what you want to do and prefer not to be prompted by the application each time resulting in a quicker interaction and immediate result.
-
-1.1.1. Optional arguments:
-	-l, --long	The resulting password will be the default long version.
+1. Run the application in terminal with the command ``ssi``.
+    * Optional arguments may be added to the command such as ``ssi -l -c`` or ``ssi -lc`` which is handy if you already know what you want to do and prefer not to be prompted by the application each time resulting in a quicker interaction and immediate result.
+        Optional arguments:
+            -l, --long	The resulting password will be the default long version.
 	-s, --short	The resulting password will be a shortened version of the original default password.
 	-c, --copy	The resulting password will be copied to memory for a few seconds after which it will be removed from memory.
 	-v, --verbose	The resulting password will be displayed on the terminal screen if needed to type over manually (not safe -- only use when absolutely necessary).
