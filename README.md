@@ -1,4 +1,4 @@
-# SecureSignIn v4a
+# Secure Sign In v4a
 This is a C++ CLI application I have created in an attempt to improve my online account security. The _a_ in the version code states that this is the CLI(Command Line Interface) version where _b_ would be the GUI(Graphical User Interface). Find the GUI version at https://gitlab.com/Zander-Labuschagne/SecureSignIn-v4b or https://github.com/Zander-Labuschagne/SecureSignIn-v4b
 
 ### Benefits:
