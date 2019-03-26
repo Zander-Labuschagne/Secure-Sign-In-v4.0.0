@@ -1,8 +1,9 @@
 #ifdef __linux__
-	#include <string.h>
-	#include <time.h>
-	#include <X11/Xlib.h>
-	// #include <stdio.h>
+	#include <string.h> //strlen
+	#include <time.h> //time_t
+	#include <X11/Xlib.h> //X11 functions for copy to clipboard
+	#include <stdio.h>
+	#include <unistd.h>
 	
 	#include "../include/X11_clipboard.h"
 
@@ -41,39 +42,47 @@
 			return;
 
 		time_t end = time(NULL) + seconds_active; //declare end time equal to current time + seconds_active seconds
-		while (time(NULL) <= end) { // execute while current time is less than end time
+		int i = 0;
+		while (time(NULL) < end) { // execute while current time is less than end time
+		printf("%d\n", i++);
 			XEvent event;
+			printf("XEVent\n");
 			XNextEvent(display, &event);
-			// switch (event.type) {
-			// case SelectionRequest:
-			if (event.type == SelectionRequest) {
-			// printf("%d \t %d\n", time(NULL), end);
-				if (event.xselectionrequest.selection != SELECTION)
+			printf("XNextEvent\n");
+			switch (event.type) {
+				case SelectionRequest:
+				{
+							printf("case 1\n");
+
+					if (event.xselectionrequest.selection != SELECTION)
+						break;
+					XSelectionRequestEvent* xsre = &event.xselectionrequest;
+					XSelectionEvent xse = {0};
+					int r = 0;
+					const Atom XA_ATOM = 4;
+					const Atom ATOM_TEXT = XInternAtom(display, "TEXT", 0);
+					xse.type = SelectionNotify;
+					xse.display = xsre->display;
+					xse.requestor = xsre->requestor;
+					xse.selection = xsre->selection;
+					xse.time = xsre->time;
+					xse.target = xsre->target;
+					xse.property = xsre->property;
+					Atom atom_targets = XInternAtom(display, "TARGETS", 0);
+					if (xse.target == atom_targets)
+						r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_ATOM, 32, PropModeReplace, (unsigned char*)&UTF8, 1);
+					else if (xse.target == XA_STRING || xse.target == ATOM_TEXT)
+						r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_STRING, 8, PropModeReplace, (unsigned char*)text, size);
+					else if (xse.target == UTF8)
+						r = XChangeProperty(xse.display, xse.requestor, xse.property, UTF8, 8, PropModeReplace, (unsigned char*)text, size);
+					else
+						xse.property = None;
+					if ((r & 2) == 0)
+						XSendEvent(display, xse.requestor, 0, 0, (XEvent*)&xse);
 					break;
-				XSelectionRequestEvent* xsre = &event.xselectionrequest;
-				XSelectionEvent xse = {0};
-				int r = 0;
-				const Atom XA_ATOM = 4;
-				const Atom ATOM_TEXT = XInternAtom(display, "TEXT", 0);
-				xse.type = SelectionNotify;
-				xse.display = xsre->display;
-				xse.requestor = xsre->requestor;
-				xse.selection = xsre->selection;
-				xse.time = xsre->time;
-				xse.target = xsre->target;
-				xse.property = xsre->property;
-				Atom atom_targets = XInternAtom(display, "TARGETS", 0);
-				if (xse.target == atom_targets)
-					r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_ATOM, 32, PropModeReplace, (unsigned char*)&UTF8, 1);
-				else if (xse.target == XA_STRING || xse.target == ATOM_TEXT)
-					r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_STRING, 8, PropModeReplace, (unsigned char*)text, size);
-				else if (xse.target == UTF8)
-					r = XChangeProperty(xse.display, xse.requestor, xse.property, UTF8, 8, PropModeReplace, (unsigned char*)text, size);
-				else
-					xse.property = None;
-				if ((r & 2) == 0)
-					XSendEvent(display, xse.requestor, 0, 0, (XEvent*)&xse);
-				break;
+				}
+				case SelectionClear:
+				 	return;
 			}
 		}
 	}
