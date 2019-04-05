@@ -16,13 +16,13 @@ macOS(Swift) version: TBA
 Mobile version: https://gitlab.com/Zander-Labuschagne/SecureSignIn-Mobile (Sailfish OS, iOS, Android)
 
 E-Mail: <zander.labuschagne@protonmail.ch>
-Copyright (C) 2017 Zander Labuschagne. This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.
+Copyright (C) 2017 Zander Labuschagne. This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 2 as published by the Free Software Foundation. The only exception is the algorithm used which is licensed under the GNU General Public License version 3.
 
 ## How to install:
 ### Linux:
-Either run the SecureSignIn-4.1a-linux file on a Linux operating system with the ``./SecureSignIn-4.1a-linux`` command or run the install.sh file after extracting the zip file to install the application on Linux systems with the following command: ``sudo sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
+Either run the SecureSignIn-4.2a-linux file on a Linux operating system with the ``./SecureSignIn-4.2a-linux`` command or run the install.sh file after extracting the zip file to install the application on Linux systems with the following command: ``sudo sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
 ### macOS:
-Either run the SecureSignIn-4.1a-macOS file on a macOS operating system with the ``./SecureSignIn-4.1a-macOS`` command or run the install.sh file after extracting the zip file to install the application on macOS systems with the following command: ``sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
+Either run the SecureSignIn-4.2a-macOS file on a macOS operating system with the ``./SecureSignIn-4.2a-macOS`` command or run the install.sh file after extracting the zip file to install the application on macOS systems with the following command: ``sh install.sh`` which should add a ``ssi`` command that you can execute in a terminal session.
   
 _On some Linux and macOS systems it's necessary to run ``sudo chmod +x install.sh`` before installation.
   (Feel free to create a Windows version, I will eventually do it myself when I get to it)_
