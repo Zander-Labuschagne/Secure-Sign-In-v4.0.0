@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2019 Zander Labuschagne. All rights reserved.
- * @version 4.0.0 05/04/19
+ * @version 4.0.0
  * @since 4.0.0
  *
  * Authors:
@@ -38,7 +38,11 @@
  * @since 4.0.0
  */
 
-
+/**
+ * function to execute command in tty session as given in tty paramater
+ * @version 4.0.0
+ * @since 4.0.0
+ */
 std::string TTY::execute_command(const char *tty)
 {
 	FILE* pipe = popen(tty, "r");
@@ -55,6 +59,11 @@ std::string TTY::execute_command(const char *tty)
 	return result;
 }
 
+/**
+ * function to toggle the echo mode in terminal for any platform
+ * @version 4.0.0
+ * @since 4.0.0
+ */
 void TTY::set_echo(bool enabled = true)
 {
 	#if defined(__MACH__) || defined(__linux__)
@@ -64,6 +73,11 @@ void TTY::set_echo(bool enabled = true)
 	#endif
 }
 
+/**
+ * function to toggle the byffer for any platform
+ * @version 4.0.0
+ * @since 4.0.0
+ */
 void TTY::set_buffer(bool enabled)
 {
 	#if defined(__MACH__) || defined(__linux__)
@@ -73,6 +87,11 @@ void TTY::set_buffer(bool enabled)
 	#endif
 }
 
+/**
+ * function to toggle the echo mode in terminal for UNIX systems(macOS and Linux)
+ * @version 4.0.0
+ * @since 4.0.0
+ */
 #if defined(__MACH__) || defined(__linux__)
 	void TTY::set_echo_unix(bool enabled = true)
 	{
@@ -86,6 +105,12 @@ void TTY::set_buffer(bool enabled)
 		tcsetattr(STDIN_FILENO, TCSANOW, &tty);
 	}
 	
+/**
+ * function to toggle the echo mode in terminal for Windows systems
+ * @version 4.0.0
+ * @since 4.0.0
+ * TODO: Test this function
+ */
 #elif _WIN32
 	void TTY::set_echo_windows(bool enabled = true) //TODO: Test
 	{
@@ -102,7 +127,13 @@ void TTY::set_buffer(bool enabled)
 	}
 #endif
 
-#if defined(__MACH__) || defined(__linux__)  //Inlcudes Apple(macOS, iOS), Linux, UNIX
+/**
+ * function to toggle the buffer for UNIX systems(macOS and Linux)
+ * Inlcudes Apple(macOS, iOS), Linux, UNIX
+ * @version 4.0.0
+ * @since 4.0.0
+ */
+#if defined(__MACH__) || defined(__linux__)
 	void TTY::set_buffer_unix(bool enabled)
 	{
 		tcgetattr(STDIN_FILENO, &tty); //get the current terminal I/O structure
@@ -115,9 +146,16 @@ void TTY::set_buffer(bool enabled)
 		tcsetattr(STDIN_FILENO, TCSANOW, &tty); //Apply the new settings
 	}
 
+/**
+ * function to toggle the terminal buffer for Windows systems
+ * @version 4.0.0
+ * @since 4.0.0
+ * TODO: Test this function
+ * This probably won't work.
+ */
 #elif _WIN32
 	void TTY::set_buffer_windows(bool enabled)
 	{
-		set_buffer_posix(enabled); //TODO: Review this
+		set_buffer_posix(enabled);
 	}
 #endif

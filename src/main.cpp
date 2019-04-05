@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2019 Zander Labuschagne. All rights reserved.
- * @version 4.0.0 05/04/19
+ * @version 4.2.0 05/04/19
  * @since 4.0.0
  *
  * Authors:
@@ -28,7 +28,7 @@
 #include <string.h>
 
 #include "../include/main.hpp"
-#include "../include/SecureSignIn.hpp"
+#include "../include/secure_sign_in.hpp"
 #include "../include/TTY.hpp"
 
 #ifdef __linux__
@@ -37,7 +37,7 @@
 
 /**
  * Main Secure Sign In program (entry point).
- * @version 4.1.0
+ * @version 4.2.0 05/04/19
  * @since 4.0.0
 */
 int main(int argc, char **argv)
@@ -166,6 +166,11 @@ int main(int argc, char **argv)
 	return -1;
 }
 
+/**
+ * Prints the help menu.
+ * @version 4.0.0
+ * @since 4.0.0
+*/
 void print_help() //TODO: Maak 'n man page
 {
 	std::cout << "Secure Sign In v4.1a ( https://gitlab.com/Zander-Labuschagne/SecureSignIn-v4a )" << std::endl;
@@ -186,6 +191,11 @@ void print_help() //TODO: Maak 'n man page
 	std::cout << "\tssi --long --copy" << std::endl;
 }
 
+/**
+ * Prints the password on screen
+ * @version 4.0.0
+ * @since 4.0.0
+*/
 void display_password(const char *password)
 {
 	for (unsigned short xviii = 0; *(password + xviii) != '\0'; xviii++)
@@ -193,6 +203,11 @@ void display_password(const char *password)
 	std::cout << std::endl;
 }
 
+/**
+ * Copy password to memory for all supported systems.
+ * @version 4.0.0
+ * @since 4.0.0
+*/
 void copy_password(const char *password)
 {
 	#ifdef __linux__  //__unix__ // all unices not linux or macOS; defined(_POSIX_VERSION) for POSIX system
@@ -204,36 +219,49 @@ void copy_password(const char *password)
 	#endif
 }
 
+/**
+ * Copy password to memory for all linux systems.
+ * @version 4.0.0
+ * @since 4.0.0
+*/
 #ifdef __linux__
 	void copy_password_linux(const char *password)
 	{
-		//X11_clipboard clipboard;
-		//clipboard.copy(password, 8);
 		copy(password, 8);
 	}
 
+/**
+ * Copy password to memory for all macOS systems.
+ * @version 4.0.0
+ * @since 4.0.0
+*/
 #elif __MACH__
 	void copy_password_macos(const char *password)
 	{
-		char *trimmed_password;
-		trimmed_password = (char*)malloc(256);
-		for (unsigned short xix = 0; *(password + xix) != '\0'; xix++)
-			*(trimmed_password + xix) = *(password + xix); 
+		// char *trimmed_password;
+		// trimmed_password = (char*)malloc(256);
+		// for (unsigned short xix = 0; *(password + xix) != '\0'; xix++)
+		// 	*(trimmed_password + xix) = *(password + xix); 
 
 		std::stringstream tty_command;
-		tty_command << "echo \"" << trimmed_password << "\" | pbcopy"; //Ek dink pbcopy is unix shell program om te copy. En ek dink die tty stringstream stuur na die terminal.
+		tty_command << "echo \"" << password << "\" | pbcopy" << std::endl;
 
 		TTY tty;
-		tty.execute_command(tty_command.str().c_str()); //ek dink die metode stuur commands na die terminal toe
+		tty.execute_command(tty_command.str().c_str());
 
 		time_t end = time(NULL) + 8; //set end time to current time + 8 seconds
 		while (time(NULL) <= end); //Wait for as long as current time is less than end time
-		free(trimmed_password);
+		//free(password);
 		//std::stringstream tty_clear;
-		tty_command << "echo \"" << " " << "\" | pbcopy";
+		tty_command << "echo \"" << "" << "\" | pbcopy" << std::endl;
 		tty.execute_command(tty_command.str().c_str());
 	}
 
+/**
+ * Copy password to memory for all Windows systems.
+ * @version 4.0.0
+ * @since 4.0.0
+*/
 #elif _WIN32
 	void copy_password_windows(const char *password)
 	{

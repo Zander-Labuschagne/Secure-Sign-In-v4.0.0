@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2019 Zander Labuschagne. All rights reserved.
- * @version 4.0.0 05/04/19
+ * @version 4.0.0
  * @since 4.0.0
  *
  * Authors:

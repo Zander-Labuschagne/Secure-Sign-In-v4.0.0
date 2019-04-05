@@ -1,32 +1,33 @@
 /**
  * Copyright (C) 2019 Zander Labuschagne. All rights reserved.
- * @version 3.0.0 05/04/19
- * @since 3.0.0
+ * @version 4.2.0 05/04/19
+ * @since 4.0.0
  *
  * Authors:
  *         @author Zander Labuschagne <zander.labuschagne@protonmail.ch>
  *
  * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU GPL 3.0 License, as published by the
+ * it under the terms of the GNU GPL 2.0 License, as published by the
  * Free Software Foundation.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GPL 3.0 License for more details.
+ * GPL 2.0 License for more details.
  *
- * You should have received a copy of the GNU GPL 3.0 License
+ * You should have received a copy of the GNU GPL 2.0 License
  * along with this program; if not, write to the author,
  * contact details above in line 7.
  */
-#include "secure_sign_in.hpp"
+#include "../include/secure_sign_in.hpp"
 
 #include <stdlib.h>
 
 /**
  * @brief Default constructor
  * secure_sign_in.cpp
- * @since 3.0.0
+ * @since 4.0.0
+ * @version 4.0.0
 */
 SecureSignIn::SecureSignIn()
 {
@@ -37,7 +38,8 @@ SecureSignIn::SecureSignIn()
  * @brief helper function to determine the actual length of the character array.
  * secure_sign_in.cpp
  * calls encrypt function.
- * @since 3.0.0
+ * @since 4.0.0
+ * @version 4.2.0 05/04/19
  */
 unsigned short SecureSignIn::get_length(const char* ptr_array)
 {
@@ -54,7 +56,8 @@ unsigned short SecureSignIn::get_length(const char* ptr_array)
 * limit specifies the limit of the password length, some websites have limitations on the password length.
 * @returns an encrypted password that should be more complex and appears random.
 * secure_sign_in.cpp
-* @since 3.0.0
+* @since 4.0.0
+* @version 4.2.0 05/04/19
 */
 char* SecureSignIn::encrypt(const char *password_in, const char *key, unsigned short limit)
 {
