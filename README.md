@@ -16,7 +16,7 @@ macOS(Swift) version: TBA
 Mobile version: https://gitlab.com/Zander-Labuschagne/SecureSignIn-Mobile (Sailfish OS, iOS, Android)
 
 E-Mail: <zander.labuschagne@protonmail.ch>
-Copyright (C) 2017 Zander Labuschagne. This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 2 as published by the Free Software Foundation. The only exception is the algorithm used which is licensed under the GNU General Public License version 3.
+Copyright (C) 2017 Zander Labuschagne. This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 2 as published by the Free Software Foundation.
 
 ## How to install:
 ### Linux:
