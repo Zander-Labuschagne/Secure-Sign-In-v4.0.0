@@ -173,7 +173,7 @@ int main(int argc, char **argv)
 */
 void print_help() //TODO: Maak 'n man page
 {
-	std::cout << "Secure Sign In v4.1a ( https://gitlab.com/Zander-Labuschagne/SecureSignIn-v4a )" << std::endl;
+	std::cout << "Secure Sign In v4.2a ( https://gitlab.com/Zander-Labuschagne/SecureSignIn-v4a )" << std::endl;
 	
 	std::cout << std::endl;
 	std::cout << "Usage: ssi [OPTIONS]..." << std::endl;
