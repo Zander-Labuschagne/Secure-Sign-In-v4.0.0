@@ -1,4 +1,4 @@
-# SecureSignIn v4a
+# Secure Sign In v4a
 This is a C++ CLI application I have created in an attempt to improve my online account security. The _a_ in the version code states that this is the CLI(Command Line Interface) version where _b_ would be the GUI(Graphical User Interface). Find the GUI version at https://gitlab.com/Zander-Labuschagne/SecureSignIn-v4b or https://github.com/Zander-Labuschagne/SecureSignIn-v4b
 
 ### Benefits:
@@ -13,11 +13,7 @@ There are Android, iPhone, iPad and macOS applications available as well, howeve
 
 macOS(Swift) version: TBA
 
-Android version: TBA
-
-iOS(iPhone) version: TBA
-
-iOS(iPad) version: TBA
+Mobile version: https://gitlab.com/Zander-Labuschagne/SecureSignIn-Mobile (Sailfish OS, iOS, Android)
 
 E-Mail: <zander.labuschagne@protonmail.ch>
 Copyright (C) 2017 Zander Labuschagne. This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.
