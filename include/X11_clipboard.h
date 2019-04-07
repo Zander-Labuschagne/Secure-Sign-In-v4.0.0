@@ -33,6 +33,5 @@
 */
 
 #ifdef __linux__
-	void copy(const char *, long);
-	char *paste();
+	void copy(const char *, const long);
 #endif

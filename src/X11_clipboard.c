@@ -24,6 +24,8 @@
 	#include <string.h>
 	#include <time.h>
 	#include <X11/Xlib.h>
+	#include <unistd.h>
+#include <stdio.h>
 	
 	#include "../include/X11_clipboard.h"
 
@@ -34,8 +36,7 @@
 	*
 	* To compile add -X11 argument to gcc to include the X11 libraries.
 	* This should only be compatible with Linux systems, if not please inform me.
-	* I am still learning C++ so if anything is unacceptable or a violation to some standards please inform me.
-	* @version 4.0.0
+\	* @version 4.0.0
 	* @since 4.0.0
 	*/
 
@@ -46,7 +47,7 @@
 	 * @version 4.0.0
 	 * @since 4.0.0
 	 */
-	void copy(const char *text, long seconds_active)
+	void copy(const char *text, const long seconds_active)
 	{
 		Display *display = XOpenDisplay(0);
 		Atom UTF8 = XInternAtom(display, "UTF8_STRING", 1);
@@ -62,40 +63,48 @@
 		if (XGetSelectionOwner(display, SELECTION) != window)
 			return;
 
-		time_t end = time(NULL) + seconds_active; //declare end time equal to current time + seconds_active seconds
-		while (time(NULL) <= end) { // execute while current time is less than end time
+		for (unsigned short i = 0; i < 3; ++i) {
+			printf("i:%d\n", i);
 			XEvent event;
 			XNextEvent(display, &event);
-			// switch (event.type) {
-			// case SelectionRequest:
+			printf("na event\n");
 			if (event.type == SelectionRequest) {
-			// printf("%d \t %d\n", time(NULL), end);
-				if (event.xselectionrequest.selection != SELECTION)
-					break;
-				XSelectionRequestEvent* xsre = &event.xselectionrequest;
-				XSelectionEvent xse = {0};
-				int r = 0;
-				const Atom XA_ATOM = 4;
-				const Atom ATOM_TEXT = XInternAtom(display, "TEXT", 0);
-				xse.type = SelectionNotify;
-				xse.display = xsre->display;
-				xse.requestor = xsre->requestor;
-				xse.selection = xsre->selection;
-				xse.time = xsre->time;
-				xse.target = xsre->target;
-				xse.property = xsre->property;
-				Atom atom_targets = XInternAtom(display, "TARGETS", 0);
-				if (xse.target == atom_targets)
-					r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_ATOM, 32, PropModeReplace, (unsigned char*)&UTF8, 1);
-				else if (xse.target == XA_STRING || xse.target == ATOM_TEXT)
-					r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_STRING, 8, PropModeReplace, (unsigned char*)text, size);
-				else if (xse.target == UTF8)
-					r = XChangeProperty(xse.display, xse.requestor, xse.property, UTF8, 8, PropModeReplace, (unsigned char*)text, size);
-				else
-					xse.property = None;
-				if ((r & 2) == 0)
-					XSendEvent(display, xse.requestor, 0, 0, (XEvent*)&xse);
-				break;
+				if (event.xselectionrequest.selection == SELECTION) {
+					XSelectionRequestEvent* xsre = &event.xselectionrequest;
+					XSelectionEvent xse = {0};
+					int r = 0;
+					const Atom XA_ATOM = 4;
+					const Atom ATOM_TEXT = XInternAtom(display, "TEXT", 0);
+					xse.type = SelectionNotify;
+					xse.display = xsre->display;
+					xse.requestor = xsre->requestor;
+					xse.selection = xsre->selection;
+					xse.time = xsre->time;
+					xse.target = xsre->target;
+					xse.property = xsre->property;
+					Atom atom_targets = XInternAtom(display, "TARGETS", 0);
+					if (xse.target == atom_targets) {
+						r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_ATOM, 32, PropModeReplace, (unsigned char*)&UTF8, 1);
+						printf("1\n");
+					}
+					else if (xse.target == XA_STRING || xse.target == ATOM_TEXT) {
+						r = XChangeProperty(xse.display, xse.requestor, xse.property, XA_STRING, 8, PropModeReplace, (unsigned char*)text, size);
+						printf("2\n");
+					}
+					else if (xse.target == UTF8) {
+						r = XChangeProperty(xse.display, xse.requestor, xse.property, UTF8, 8, PropModeReplace, (unsigned char*)text, size);
+						printf("3\n");
+						// pasted = true;
+					}
+					else {
+						xse.property = None;
+						printf("4\n");
+					}
+					if ((r & 2) == 0) {
+						XSendEvent(display, xse.requestor, 0, 0, (XEvent*)&xse);
+						printf("5\n");
+					}
+				}
 			}
 		}
 	}

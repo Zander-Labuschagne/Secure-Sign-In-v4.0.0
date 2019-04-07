@@ -228,6 +228,7 @@ void copy_password(const char *password)
 	void copy_password_linux(const char *password)
 	{
 		copy(password, 8);
+		std::cout << "KLAAAR";
 	}
 
 /**
@@ -238,11 +239,6 @@ void copy_password(const char *password)
 #elif __MACH__
 	void copy_password_macos(const char *password)
 	{
-		// char *trimmed_password;
-		// trimmed_password = (char*)malloc(256);
-		// for (unsigned short xix = 0; *(password + xix) != '\0'; xix++)
-		// 	*(trimmed_password + xix) = *(password + xix); 
-
 		std::stringstream tty_command;
 		tty_command << "echo \"" << password << "\" | pbcopy" << std::endl;
 
@@ -251,8 +247,6 @@ void copy_password(const char *password)
 
 		time_t end = time(NULL) + 8; //set end time to current time + 8 seconds
 		while (time(NULL) <= end); //Wait for as long as current time is less than end time
-		//free(password);
-		//std::stringstream tty_clear;
 		tty_command << "echo \"" << "" << "\" | pbcopy" << std::endl;
 		tty.execute_command(tty_command.str().c_str());
 	}
