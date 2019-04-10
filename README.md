@@ -13,10 +13,11 @@ There are Android, iPhone, iPad and macOS applications available as well, howeve
 
 macOS(Swift) version: TBA
 
-Mobile version: https://gitlab.com/Zander-Labuschagne/SecureSignIn-Mobile (Sailfish OS, iOS, Android)
+Sailfish OS version: *In progress*
+iOS version: *TBA*
+Mobile version: https://gitlab.com/Zander-Labuschagne/SecureSignIn-Mobile
 
 E-Mail: <zander.labuschagne@protonmail.ch>
-Copyright (C) 2017 Zander Labuschagne. This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 2 as published by the Free Software Foundation.
 
 ## How to install:
 ### Linux:
