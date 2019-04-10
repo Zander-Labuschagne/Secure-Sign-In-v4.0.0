@@ -14,7 +14,9 @@ There are Android, iPhone, iPad and macOS applications available as well, howeve
 macOS(Swift) version: TBA
 
 Sailfish OS version: *In progress*
+
 iOS version: *TBA*
+
 Mobile version: https://gitlab.com/Zander-Labuschagne/SecureSignIn-Mobile
 
 E-Mail: <zander.labuschagne@protonmail.ch>
