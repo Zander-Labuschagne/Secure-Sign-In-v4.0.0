@@ -11,13 +11,13 @@ This is a C++ CLI application I have created in an attempt to improve my online 
 This is my first official C++ application, feel free to criticize or comment. I would appreciate criticism or comments on my coding style since I am not completely sure on the normal conventions, I have tried to stick with the Linux kernel coding style (https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst).
 There are Android, iPhone, iPad and macOS applications available as well, however they are not always up to date and I have left some of them discontinued/incomplete. I work on these projects in my free time only so don't expect regular updates from me. This is only compatible on Linux and macOS systems. (There is Windows compatible code that is supposed to be the equivalent but I have not tested it yet and some are not fully implemented yet)
 
-macOS(Swift) version: TBA
+macOS(Swift) version: *TBA*
 
 Sailfish OS version: *In progress*
 
 iOS version: *TBA*
 
-Android version: https://gitlab.com/Zander-Labuschagne/SecureSignIn-Mobile
+Android version: https://gitlab.com/Zander-Labuschagne/SecureSignIn-Android-v3
 
 E-Mail: <zander.labuschagne@protonmail.ch>
 
